@@ -1,0 +1,36 @@
+/* src/components/EditComanda.css */
+.edit-comanda {
+    margin: 1%;
+
+}
+
+.trabajo-realizado-textbox {
+    background-color: bisque;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.titulo{
+    font-size: 40px;
+    margin: 0px;
+    color: white;
+    text-align: left;
+}
+
+.edit-comanda-form{
+    background-color: rgb(248, 214, 120);
+    padding: 10px;
+    padding-left: 2%;
+    padding-right: 3%;
+    border-radius: 10px;
+    box-shadow: black 3px 3px 6px;
+    max-width: calc(100%-10px);/*10px de padding*/
+    min-width: calc(100%-10px);/*10px de padding*/
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-60%, -50%); */
+}
+
+
+

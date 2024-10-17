@@ -1,0 +1,9 @@
+.contenedor-supervisor {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: top left; 
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 2.5em;
+}

@@ -1,0 +1,155 @@
+.comanda-banner-NORMAL {
+    width: calc(100%-10px);
+    background-color: #fde7a0ea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.comanda-banner-URGENTE {
+    width: calc(100%-10px);
+    background-color: #bb3232ea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding-top: 20px;
+    padding: 10px;
+}
+
+.comanda-number {
+    margin: 0px;
+    text-align: center;
+    background-color: rgb(141, 111, 65);
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: inset rgba(0, 0, 0, 0.61) 1px 1px 5px;
+    height: 20px;
+    padding-top: 3px;
+    padding-bottom: 8px;
+    font-size: 20px;
+
+}
+
+.comanda-trabajo-realizado {
+    margin: 0px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: inset rgba(0, 0, 0, 0.61) 1px 1px 6px;
+    padding-top: 3px;
+    padding-bottom: 8px;
+    background-color: #fde7a06e;
+}
+
+.banner-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-left: solid rgba(143, 110, 49, 0.897) 1px;
+    border-right: solid rgba(143, 110, 49, 0.897) 1px;
+    padding: 5px;
+}
+
+.comanda-banner button {
+    width: 20px;
+    height: 100px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    box-shadow: black 1px 1px 3px;
+    writing-mode: vertical-rl;
+}
+
+.comanda-banner button:hover {
+    box-shadow: black 2px 2px 5px;
+}
+
+.comanda-banner-inner {
+    width: 100%;
+}
+
+.banner-left, .banner-center, .banner-right {
+    flex: 1;
+}
+
+.estado {
+    width: 170px;
+}
+
+.banner-left {
+    text-align: left;
+}
+
+.banner-center {
+    text-align: left;
+}
+
+.banner-right {
+    text-align: left;
+}
+
+.estado-emitido {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+}
+
+.estado-en-curso {
+    color: rgb(0, 0, 0);
+    background-color: rgb(236, 192, 70);
+}
+
+.estado-finalizado {
+    color: rgb(255, 255, 255);
+    background-color: rgb(16, 146, 44);
+}
+
+.estado-en-espera {
+    color: rgb(255, 255, 255);
+    background-color: rgb(94, 49, 49);
+}
+
+.estado-cerrada {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+}
+
+.estado-emitido, .estado-en-curso, .estado-finalizado, .estado-en-espera, .estado-cerrada {
+    padding-top: 5px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.671) inset 1px 1px 5px;
+}
+
+.comanda-container {
+    max-height: auto; /* Altura normal */
+    overflow: hidden;  /* Evita que el contenido excedente sea visible */
+    padding-bottom: 0; /* Espacio inicial */
+    transition: max-height 1s ease;
+}
+
+
+.comanda-container.expanded {
+    max-height: 700px;  /* Aumenta la altura cuando EditComanda está visible */
+    padding-bottom: 2px; /* Añadir espacio para el componente EditComanda */
+}
+
+@media (max-width:600px){
+    .estado {
+        width: 150px;
+    }
+
+    .comanda-container {
+        max-height: 400px;
+    }
+
+    .comanda-container.expanded {
+        max-height: 700px;
+    }
+}
+

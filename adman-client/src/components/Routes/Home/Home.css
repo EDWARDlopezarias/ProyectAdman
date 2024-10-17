@@ -1,0 +1,15 @@
+/* src/components/Home.css */
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width:600px){
+    .home-container {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1px;
+        padding-right: 1px;
+    }
+}
