@@ -1,0 +1,68 @@
+import React, { useState } from 'react';
+import './Comanda.css';
+//import './Modal.css';
+import EditComanda from '../EditComanda/EditComanda';
+
+const Comanda = ({ maquina, fecha, supervisor, motivo, estado, trabajoRealizado, tech1, cod }) => {
+    const [flipped, setFlipped] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+
+    const handleClick = () => {
+        setFlipped(!flipped);
+    };
+
+    const handleEditClick = (e) => {
+        e.stopPropagation();
+        setIsEditing(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsEditing(false);
+    };
+
+    const classEstado = {
+        'EMITIDO': 'emitido',
+        'EN CURSO': 'en-curso',
+        'FINALIZADO': 'finalizado'
+    };
+
+    return (
+        <>
+            <div className={`comanda-card ${flipped ? 'flipped' : ''}`} onClick={handleClick}>
+                <div className="comanda-card-inner">
+                    <div className="comanda-card-front">
+                        <div className='nro-comanda'>
+                            <p><strong>Numero de Comanda:</strong></p>
+                            <p>{cod}</p>
+                        </div>
+                        <p><strong>Máquina:</strong> {maquina}</p>
+                        <p className={`estado-${classEstado[estado] || ''}`}><strong>Estado:</strong> {estado}</p>
+                        <p><strong>Fecha:</strong> {new Date(fecha).toLocaleString()}</p>
+                        <p><strong>Supervisor:</strong> {supervisor}</p>
+                        <p><strong>Técnico:</strong> {tech1}</p>
+                        {(estado === 'EN CURSO' || estado === 'EMITIDO') && (
+                            <button onClick={handleEditClick}>Editar Trabajo</button>
+                        )}
+                    </div>
+                    <div className="comanda-card-back">
+                        <p><strong>Motivo:</strong></p>
+                        <p>{motivo}</p>
+                        <p><strong>Trabajo Realizado:</strong></p>
+                        <p>{trabajoRealizado}</p>
+                    </div>
+                </div>
+            </div>
+
+            {isEditing && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <EditComanda cod={cod} onClose={handleCloseModal} />
+                    </div>
+                </div>
+            )}
+        </>
+    );
+};
+
+export default Comanda;
+

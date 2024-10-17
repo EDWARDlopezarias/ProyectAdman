@@ -1,0 +1,443 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.3
+-- Dumped by pg_dump version 16.3
+
+-- Started on 2024-09-02 08:56:37
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 220 (class 1259 OID 16527)
+-- Name: BD_PREVENTIVO; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."BD_PREVENTIVO" (
+    "Id" integer NOT NULL,
+    "Maq" text,
+    "Trabajo_preventivo" text
+);
+
+
+ALTER TABLE public."BD_PREVENTIVO" OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 16526)
+-- Name: BD_PREVENTIVO_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."BD_PREVENTIVO_Id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."BD_PREVENTIVO_Id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 4864 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: BD_PREVENTIVO_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."BD_PREVENTIVO_Id_seq" OWNED BY public."BD_PREVENTIVO"."Id";
+
+
+--
+-- TOC entry 4711 (class 2604 OID 16530)
+-- Name: BD_PREVENTIVO Id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."BD_PREVENTIVO" ALTER COLUMN "Id" SET DEFAULT nextval('public."BD_PREVENTIVO_Id_seq"'::regclass);
+
+
+--
+-- TOC entry 4858 (class 0 OID 16527)
+-- Dependencies: 220
+-- Data for Name: BD_PREVENTIVO; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."BD_PREVENTIVO" ("Id", "Maq", "Trabajo_preventivo") FROM stdin;
+1	C0	Control de nivel de aceite en centrales hidraulicas
+2	C1	Control de nivel de aceite en centrales hidraulicas
+3	C2	Control de nivel de aceite en centrales hidraulicas
+4	C3	Control de nivel de aceite en centrales hidraulicas
+5	C4	Control de nivel de aceite en centrales hidraulicas
+6	C5	Control de nivel de aceite en centrales hidraulicas
+7	C6	Control de nivel de aceite en centrales hidraulicas
+8	C7	Control de nivel de aceite en centrales hidraulicas
+9	C8	Limpieza de tableros electricos
+10	C9	Limpieza de tableros electricos
+11	C10	Limpieza de tableros electricos
+12	C11	Limpieza de tableros electricos
+13	C12	Limpieza de tableros electricos
+14	C13	Limpieza de tableros electricos
+15	C14	Limpieza de tableros electricos
+16	C15	Limpieza de tableros electricos
+17	C16	Limpieza de tableros electricos
+18	C17	Limpieza de tableros electricos
+19	C18	Limpieza de tableros electricos
+20	C19	Limpieza de tableros electricos
+21	C20	Limpieza de tableros electricos
+22	C21	Limpieza de tableros electricos
+23	SC1	Cambio de carbones
+24	SC2	Cambio de carbones
+25	.	\N
+26	R19	Limpieza de tableros electricos
+27	R18	Limpieza de tableros electricos
+28	R14	Limpieza de tableros electricos
+29	R15	Limpieza de tableros electricos
+30	R16	Limpieza de tableros electricos
+31	R17	Limpieza de tableros electricos
+32	E0	Limpieza de mangueras y conductos de IBC entrada y Salida
+33	E1	Calibración de ControlPlast
+34	E2	Calibración de ControlPlast
+35	E3	Calibración de ControlPlast
+36	E4	Limpieza de mangueras y conductos de IBC entrada y Salida
+37	E5	Limpieza de mangueras y conductos de IBC entrada y Salida
+38	E6	Limpieza de mangueras y conductos de IBC entrada y Salida
+39	E7	Limpieza de mangueras y conductos de IBC entrada y Salida
+40	E8	Calibración de ControlPlast
+41	E9	Calibración de ControlPlast
+42	E10	Limpieza de mangueras y conductos de IBC entrada y Salida
+43	E11	Calibración de ControlPlast
+44	E12	Cambio de filtro en equipo JONIX
+45	E13	Limpieza de tablero electricos
+46	E14	Limpieza de tablero electricos
+47	E15	Limpieza de tablero electricos
+48	E16	Limpieza de tablero electricos
+49	E17	Limpieza de mangueras y conductos de IBC entrada y Salida
+50	MOLINO E10	Limpieza de tablero electricos
+51	CORTA TUBOS	Cambio de carbones
+52	E18	Limpieza de mangueras y conductos de IBC entrada y Salida
+60	FP1	Limpieza de unidad FRL y limpieza de silenciadores neumaticos
+61	FP2	Limpieza de unidad FRL y limpieza de silenciadores neumaticos
+62	FP3	Limpieza de unidad FRL y limpieza de silenciadores neumaticos
+63	FP4	Limpieza de unidad FRL y limpieza de silenciadores neumaticos
+64	FP5	Limpieza de unidad FRL y limpieza de silenciadores neumaticos
+65	FP6	Limpieza de unidad FRL y limpieza de silenciadores neumaticos
+66	EMP1	Limpieza de cabezal
+67	ENV1	Limpieza de cabezal
+68	ENV2	Limpieza de cabezal
+69	ENV3	Limpieza de cabezal
+70	.	\N
+71	.	\N
+72	H1	Cambio de teflón en cabezal
+73	H2	Cambio de teflón en cabezal
+74	H3	Cambio de teflón en cabezal
+75	.	\N
+76	.	\N
+77	VENUS	\N
+78	.	\N
+79	API TOYOTA	\N
+80	API PREMEC	\N
+81	.	\N
+82	.	\N
+83	GENERADOR 1	\N
+84	GENERADOR 2	\N
+85	GENERADOR 3	\N
+87	R16	Ajuste de correas
+88	E0	Cambio de filtro ControlPlast
+89	E0	Cambio de filtro ControlPlast
+90	E1	Cambio de filtro ControlPlast
+91	E2	Cambio de filtro ControlPlast
+92	E3	Cambio de filtro ControlPlast
+93	E4	Cambio de filtro ControlPlast
+94	E5	Cambio de filtro ControlPlast
+95	E6	Cambio de filtro ControlPlast
+96	E7	Cambio de filtro ControlPlast
+97	E8	Cambio de filtro ControlPlast
+98	E9	Cambio de filtro ControlPlast
+99	E10	Cambio de filtro ControlPlast
+100	E11	Cambio de filtro ControlPlast
+101	E17	Cambio de filtro ControlPlast
+102	E18	Cambio de filtro ControlPlast
+103	FONDO	Control de dispensers
+104	AMUTEC	Control de dispensers
+105	EXTRUSIÓN	Control de dispensers
+106		
+107	C20	Cambio de filtros de tableros electricos
+108	C0	Cambio de filtros de tableros electricos
+109	C1	Cambio de filtros de tableros electricos
+110	C2	Cambio de filtros de tableros electricos
+111	C3	Cambio de filtros de tableros electricos
+112	C4	Cambio de filtros de tableros electricos
+113	C5	Cambio de filtros de tableros electricos
+114	C6	Cambio de filtros de tableros electricos
+115	C7	Cambio de filtros de tableros electricos
+116	C8	Cambio de filtros de tableros electricos
+117	C9	Cambio de filtros de tableros electricos
+118	C10	Cambio de filtros de tableros electricos
+119	C11	Cambio de filtros de tableros electricos
+120	C12	Cambio de filtros de tableros electricos
+121	C13	Cambio de filtros de tableros electricos
+122	C14	Cambio de filtros de tableros electricos
+123	C15	Cambio de filtros de tableros electricos
+124	C16	Cambio de filtros de tableros electricos
+125	C17	Cambio de filtros de tableros electricos
+126	C18	Cambio de filtros de tableros electricos
+127	C19	Cambio de filtros de tableros electricos
+128	C21	Cambio de filtros de tableros electricos
+129	C22	Cambio de filtros de tableros electricos
+130	C23	Cambio de filtros de tableros electricos
+131	R16	Cambio de filtros de tableros electricos
+132	R17	Cambio de filtros de tableros electricos
+133	R18	Cambio de filtros de tableros electricos
+134	R14	Cambio de filtros de tableros electricos
+135	R15	Cambio de filtros de tableros electricos
+136	E0	Limpieza de IRIS
+137	E1	Limpieza de IRIS
+138	E2	Limpieza de IRIS
+139	E3	Limpieza de IRIS
+140	E4	Limpieza de IRIS
+141	E5	Limpieza de IRIS
+142	E6	Limpieza de IRIS
+143	E7	Limpieza de IRIS
+144	E8	Limpieza de IRIS
+145	E9	Limpieza de IRIS
+146	E10	Limpieza de IRIS
+147	E10	Limpieza de rodillo de tiro
+148	E10	Limpieza de estructura de máquina
+149	E11	Limpieza de IRIS
+150	E12	Limpieza de IRIS
+151	E13	Limpieza de IRIS
+152	E14	Limpieza de IRIS
+153	E15	Limpieza de IRIS
+154	E16	Limpieza de IRIS
+155	E17	Limpieza de IRIS
+156	E18	Limpieza de IRIS
+157	E19	Limpieza de IRIS
+217	E0	Limpieza de rodillo de tiro
+218	E1	Limpieza de rodillo de tiro
+219	E2	Limpieza de rodillo de tiro
+220	E3	Limpieza de rodillo de tiro
+221	E4	Limpieza de rodillo de tiro
+222	E5	Limpieza de rodillo de tiro
+223	E6	Limpieza de rodillo de tiro
+224	E7	Limpieza de rodillo de tiro
+225	E8	Limpieza de rodillo de tiro
+226	E9	Limpieza de rodillo de tiro
+227	E10	Limpieza de rodillo de tiro
+228	E11	Limpieza de rodillo de tiro
+229	E12	Limpieza de rodillo de tiro
+230	E13	Limpieza de rodillo de tiro
+231	E14	Limpieza de rodillo de tiro
+232	E15	Limpieza de rodillo de tiro
+233	E16	Limpieza de rodillo de tiro
+234	E17	Limpieza de rodillo de tiro
+235	E18	Limpieza de rodillo de tiro
+236	E19	Limpieza de rodillo de tiro
+237	E0	Limpieza de estructura de máquina
+238	E1	Limpieza de estructura de máquina
+239	E2	Limpieza de estructura de máquina
+240	E3	Limpieza de estructura de máquina
+241	E4	Limpieza de estructura de máquina
+242	E5	Limpieza de estructura de máquina
+243	E6	Limpieza de estructura de máquina
+244	E7	Limpieza de estructura de máquina
+245	E8	Limpieza de estructura de máquina
+246	E9	Limpieza de estructura de máquina
+247	E11	Limpieza de estructura de máquina
+248	E12	Limpieza de estructura de máquina
+249	E13	Limpieza de estructura de máquina
+250	E14	Limpieza de estructura de máquina
+251	E15	Limpieza de estructura de máquina
+252	E16	Limpieza de estructura de máquina
+253	E17	Limpieza de estructura de máquina
+254	E18	Limpieza de estructura de máquina
+255	E19	Limpieza de estructura de máquina
+256	E0	Limpieza de tablero electricos(polvo)
+257	E1	Limpieza de tablero electricos(polvo)
+258	E2	Limpieza de tablero electricos(polvo)
+259	E3	Limpieza de tablero electricos(polvo)
+260	E4	Limpieza de tablero electricos(polvo)
+261	E5	Limpieza de tablero electricos(polvo)
+262	E6	Limpieza de tablero electricos(polvo)
+263	E7	Limpieza de tablero electricos(polvo)
+264	E8	Limpieza de tablero electricos(polvo)
+265	E9	Limpieza de tablero electricos(polvo)
+266	E10	Limpieza de tablero electricos(polvo)
+267	E11	Limpieza de tablero electricos(polvo)
+268	E12	Limpieza de tablero electricos(polvo)
+269	E13	Limpieza de tablero electricos(polvo)
+270	E14	Limpieza de tablero electricos(polvo)
+271	E15	Limpieza de tablero electricos(polvo)
+272	E16	Limpieza de tablero electricos(polvo)
+273	E17	Limpieza de tablero electricos(polvo)
+274	E18	Limpieza de tablero electricos(polvo)
+275	E19	Limpieza de tablero electricos(polvo)
+276	C3	Realizar preventivo a la parte neumatica del carro
+277	R3	QUEMA DE FILTROS
+278	E0	Cambio de filtro
+279	C1	Revision mangueras y conexiones neumaticas
+280	C1	Inspeccion general de cilindros
+281	C2	Inspeccion general de cilindros
+282	R14	Limpieza de etiquetadora 1
+283	E9	Cambio de filtro
+284	VARIOS	Completar nivel de liquido refrigerante (Amutec y Fondo)
+285	E0	Cambio de filtro
+286	E1	Cambio de filtro
+287	E2	Cambio de filtro
+288	E3	Cambio de filtro
+289	E4	Cambio de filtro
+290	E5	Cambio de filtro
+291	E6	Cambio de filtro
+292	E7	Cambio de filtro
+293	E8	Cambio de filtro
+294	E11	Cambio de filtro
+295	E12	Cambio de filtro
+296	E13	Cambio de filtro
+297	E14	Cambio de filtro
+298	E15	Cambio de filtro
+299	E16	Cambio de filtro
+300	R14	Limpieza de etiquetadora 2
+301	R15	Limpieza de etiquetadora 1
+302	R16	Limpieza de etiquetadora 1
+303	R18	Limpieza de etiquetadora 1
+304	R19	Limpieza de etiquetadora 1
+305	R15	Limpieza de etiquetadora 2
+306	R18	Limpieza de etiquetadora 2
+307	R19	Limpieza de etiquetadora 2
+308	R20	Limpieza de etiquetadora 1
+309	R20	Limpieza de etiquetadora 2
+310	R20	Limpieza de etiquetadora 3
+311	C8	Cambio de teflón superior
+312	C8	Cambio de teflón inferior
+313	C8	Cambio de teflón superior e inferior
+314	C9	Cambio de teflón superior
+315	C9	Cambio de teflón inferior
+316	C9	Cambio de teflón superior e inferior
+317	C10	Cambio de teflón superior
+318	C10	Cambio de teflón inferior
+319	C10	Cambio de teflón superior e inferior
+320	C11	Cambio de teflón superior
+321	C11	Cambio de teflón inferior
+322	C11	Cambio de teflón superior e inferior
+323	C12	Cambio de teflón superior
+324	C12	Cambio de teflón inferior
+325	C12	Cambio de teflón superior e inferior
+326	C13	Cambio de teflón superior
+327	C13	Cambio de teflón inferior
+328	C13	Cambio de teflón superior e inferior
+329	C14	Cambio de teflón superior
+330	C14	Cambio de teflón inferior
+331	C14	Cambio de teflón superior e inferior
+332	C15	Cambio de teflón superior
+333	C15	Cambio de teflón inferior
+334	C15	Cambio de teflón superior e inferior
+335	C17	Cambio de teflón superior
+336	C17	Cambio de teflón inferior
+337	C17	Cambio de teflón superior e inferior
+338	C20	Cambio de teflón superior
+339	C20	Cambio de teflón inferior
+340	C20	Cambio de teflón superior e inferior
+341	C22	Cambio de teflón superior
+342	C22	Cambio de teflón inferior
+343	C22	Cambio de teflón superior e inferior
+344	R14	Cambio de teflón superior
+345	R14	Cambio de teflón inferior
+346	R14	Cambio de teflón superior e inferior
+347	R15	Cambio de teflón superior
+348	R15	Cambio de teflón inferior
+349	R15	Cambio de teflón superior e inferior
+350	R16	Cambio de teflón superior
+351	R16	Cambio de teflón inferior
+352	R16	Cambio de teflón superior e inferior
+353	R18	Cambio de teflón superior
+354	R18	Cambio de teflón inferior
+355	R18	Cambio de teflón superior e inferior
+356	R19	Cambio de teflón superior
+357	R19	Cambio de teflón inferior
+358	R19	Cambio de teflón superior e inferior
+359	R20	Cambio de teflón superior
+360	R20	Cambio de teflón inferior
+361	R20	Cambio de teflón superior e inferior
+362	E0	Limpieza de boquilla, Anillo y cambio de filtro
+363	E1	Limpieza de boquilla, Anillo y cambio de filtro
+364	E2	Limpieza de boquilla, Anillo y cambio de filtro
+365	E3	Limpieza de boquilla, Anillo y cambio de filtro
+366	E4	Limpieza de boquilla, Anillo y cambio de filtro
+367	E5	Limpieza de boquilla, Anillo y cambio de filtro
+368	E6	Limpieza de boquilla, Anillo y cambio de filtro
+369	E7	Limpieza de boquilla, Anillo y cambio de filtro
+370	E8	Limpieza de boquilla, Anillo y cambio de filtro
+371	E9	Limpieza de boquilla, Anillo y cambio de filtro
+372	E10	Limpieza de boquilla, Anillo y cambio de filtro
+373	E11	Limpieza de boquilla, Anillo y cambio de filtro
+374	E12	Limpieza de boquilla, Anillo y cambio de filtro
+375	E13	Limpieza de boquilla, Anillo y cambio de filtro
+376	E14	Limpieza de boquilla, Anillo y cambio de filtro
+377	E15	Limpieza de boquilla, Anillo y cambio de filtro
+378	E16	Limpieza de boquilla, Anillo y cambio de filtro
+379	E17	Limpieza de boquilla, Anillo y cambio de filtro
+380	E18	Limpieza de boquilla, Anillo y cambio de filtro
+381	E1	Limpieza de rodillo de tiro
+382	E2	Limpieza de rodillo de tiro
+383	E3	Limpieza de rodillo de tiro
+384	E4	Limpieza de rodillo de tiro
+385	E5	Limpieza de rodillo de tiro
+386	E6	Limpieza de rodillo de tiro
+387	E7	Limpieza de rodillo de tiro
+388	E8	Limpieza de rodillo de tiro
+389	E9	Limpieza de rodillo de tiro
+390	E10	Limpieza de rodillo de tiro
+391	E11	Limpieza de rodillo de tiro
+392	E12	Limpieza de rodillo de tiro
+393	E13	Limpieza de rodillo de tiro
+394	E14	Limpieza de rodillo de tiro
+395	E15	Limpieza de rodillo de tiro
+396	E16	Limpieza de rodillo de tiro
+397	E17	Limpieza de rodillo de tiro
+398	E18	Limpieza de rodillo de tiro
+399	R3	Cambio de cuchillas del aglomerador
+400	E17	Cambio de filtro
+401	E18	Cambio de filtro
+402	VARIOS	Reparar Zorra
+403	VARIOS	Trabajos Varios
+404	R3	Engrase de alemites en todas las partes móviles
+405	R3	Engrase de alemites en todas las partes móviles
+\.
+
+
+--
+-- TOC entry 4865 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: BD_PREVENTIVO_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."BD_PREVENTIVO_Id_seq"', 1, false);
+
+
+--
+-- TOC entry 4713 (class 2606 OID 16534)
+-- Name: BD_PREVENTIVO BD_PREVENTIVO_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."BD_PREVENTIVO"
+    ADD CONSTRAINT "BD_PREVENTIVO_pkey" PRIMARY KEY ("Id");
+
+
+-- Completed on 2024-09-02 08:56:37
+
+--
+-- PostgreSQL database dump complete
+--
+
