@@ -54,7 +54,7 @@ const Th = styled.th`
   font-size:medium;
   color:${colorFont};
 
-  @media (max-width: 650px) {
+  @media (max-width: 850px) {
     font-size:medium;
     font-weight:300;
     padding:2px;

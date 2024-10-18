@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import SelectList from './Components/SelectList.jsx';
 import {
     Container,
     Title,
@@ -24,7 +25,10 @@ const ComandaDetails = () => {
   const [comanda, setComanda] = useState(null);
   const [error, setError] = useState(null);
   const [Tr, setTr] = useState();
+  const [Tecnico, setTecnico] = useState('');
   const [update, setUpdate] = useState(false);
+  const [SelectValue, setSelectValue] = useState('');
+  const [Tecnicos, setTecnicos] = useState([]);
   const {cod} = useParams()
   const navigate = useNavigate();
 
@@ -35,12 +39,16 @@ const ComandaDetails = () => {
         const response = await axios.get(`${urlEnv}/api/comandas/${cod}`);
         setComanda(response.data);
         setTr(response.data.TR)
+        setTecnico(response.data.Tech1)
       } catch (err) {
         setError('Error al obtener la información de la comanda.');
       }
     };
     fetchComanda();
-  }, [cod],update);
+    axios.get(`${urlEnv}/api/Tech`)
+          .then(response => setTecnicos(response.data))
+          .catch(error => console.error('Error al obtener Tecnicos:', error))
+  }, [cod],update, Tecnicos);
   
   if (error) {
     return <div>{error}</div>;
@@ -52,6 +60,11 @@ const ComandaDetails = () => {
   const HandleBackClick = () =>{
     navigate('/')
   }
+
+  const handleSelectChange = (value) =>{
+    setSelectValue(value)
+  }
+
   const HandleSaveClick = () =>{
 
     switch(comanda.Estado) {
@@ -63,7 +76,8 @@ const ComandaDetails = () => {
           ...comanda,
           TR: Tr,
           Hinicio: new Date(FechaHoy).toISOString(),
-          Estado: 'EN CURSO'
+          Estado: 'EN CURSO',
+          Tech1: SelectValue
         })
         .catch(error => console.error('Error updating comanda:', error));
         setUpdate(!update)
@@ -99,7 +113,7 @@ const ComandaDetails = () => {
     return `${horas} horas y ${minutos} minutos`;
   }
 
-
+  //<Td>{comanda.Tech1}</Td>
   return (
     <Container>
       <Title>Pedido de mantenimiento</Title>
@@ -143,7 +157,17 @@ const ComandaDetails = () => {
         </thead>
         <tbody>
           <tr>
-            <Td>{comanda.Tech1}</Td>
+            {comanda.Estado === 'EMITIDO' ? (
+              <Td><SelectList 
+                    Array={Tecnicos}
+                    onChange={handleSelectChange}
+                    column='Tecnico'
+                    defaultValue={Tecnico}
+                  />
+              </Td>
+            ) : (
+              <Td>{comanda.Tech1}</Td>
+            )}
             <Td>{comanda.Supervisor}</Td>
             <Td>{comanda.MAQ}</Td>
             <Td>{comanda.Aprobado ? 'Sí' : 'No'}</Td>
