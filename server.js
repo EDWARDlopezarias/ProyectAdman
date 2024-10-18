@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 //const { Op } = require('sequelize'); // Importar operadores de Sequelize
 //const sequelize = require('./db.js'); // Importar la instancia de Sequelize configuradaconst { Supervisor, Maquina, Tipo} = require('./models/models.js'); // Modelos Sequelize
-const { Supervisor, Maquina, Tipo} = require('./models/models.js'); // Modelos Sequelize
+const { Supervisor, Maquina, Tipo, Tecnicos} = require('./models/models.js'); // Modelos Sequelize
 const comandasRouter = require('./Routes/comandas.js');
 const bdManagerRouter = require('./Routes/bdManager.js');
 const Comanda = require('./models/BdComanda.js');
@@ -40,6 +40,16 @@ app.get('/api/maquinas', async (req, res) => {
         res.json(maquinas);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener máquinas' });
+    }
+});
+
+//Ruta para obtener máquinas
+app.get('/api/Tech', async (req, res) => {
+    try {
+        const techs = await Tecnicos.findAll(); // Obtener todas las máquinas
+        res.json(techs);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener técnicos' });
     }
 });
 

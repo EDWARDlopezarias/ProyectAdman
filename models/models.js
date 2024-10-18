@@ -44,4 +44,19 @@ const Tipo = sequelize.define('Tipo', {
     timestamps: false
 });
 
-module.exports = {Supervisor, Maquina, Tipo};
+// Modelo de técnicos
+
+const Tecnicos = sequelize.define('Tecnico', {
+    Id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    Tecnico: DataTypes.STRING,
+    Sector_1: DataTypes.STRING
+}, {
+    tableName: 'BD_TECNICOS',
+    timestamps: false
+})
+
+module.exports = {Supervisor, Maquina, Tipo, Tecnicos};
