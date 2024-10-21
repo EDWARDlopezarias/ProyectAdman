@@ -66,8 +66,8 @@ function Banner() {
                         <SubMenu $isActive={activeSubMenu === 'Supervisor'} $left="0%">
                             <label></label>
                             <Link to="/new-comanda" onClick={() => handleMenuClick()}>Nuevo Trabajo</Link>
-                            <label onClick={() => handleFilter('emitido')}>Mostrar trabajos pedidos</label>
-                            <label onClick={() => handleFilter('enCurso')}>Mostrar trabajos en ejecución</label>
+                            <label >Mostrar trabajos pedidos</label>
+                            <label >Mostrar trabajos en ejecución</label>
                             <label onClick={() => handleMenuClick()}>Aprobar trabajos</label>
                             <Link to="/supervisor"  onClick={() => handleMenuClick()}>Tester de componentes</Link>
                         </SubMenu>

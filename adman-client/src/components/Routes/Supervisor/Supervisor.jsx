@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import './Supervisor.css';
-import SelectList from "../../PedidoDetail/Components/SelectList";
+import ComandaTable from '../../ComandaTable/ComandaTable'
 //import SupervisoresArray from "../../../BD-test/Arrays.js";
 import { useState } from "react";
 import axios from 'axios'
@@ -27,7 +27,7 @@ function Supervisor(){
     },[])
     return(
         <div className="contenedor-supervisor">
-            <SelectList Array={Tecnicos} onChange={handleSelectChange} column='Tecnicos'/>
+            <ComandaTable Array={Tecnicos} onChange={handleSelectChange} column='Tecnicos'/>
         </div>
     )
 }

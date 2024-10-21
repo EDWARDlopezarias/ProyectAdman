@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // Importa styled-components
 import {
     TableContainer,
@@ -13,43 +13,49 @@ import {
     CeldaUrgencia,
     TableHeaders,
     FindWork,
-    FinderContainer
+    FinderContainer,
+    TableRowfilters,
+    Tablefilter
 } from './style-ComandaTable.jsx'; // Supongamos que lo exportas de este archivo
 
 
 const ComandaTable = () => {
-    const [, setComandas] = useState([]);
+    const [Comandas, setComandas] = useState([]);
     const [filteredComandas, setFilteredComandas] = useState([]);
     const urlEnv = process.env.REACT_APP_URL_HOME;
-    const location = useLocation();
     const navigate = useNavigate();
     
     useEffect(() => {
         // Obtener las comandas desde la API
-        const query = new URLSearchParams(location.search);
-        const filter = query.get('filter');
         axios.get(`${urlEnv}/api/comandas`)
             .then(response => {
                 setComandas(response.data);
-                applyFilter(response.data, filter);
+                setFilteredComandas(response.data);
             })
             .catch(error => console.error('Error al obtener las comandas:', error));
-    }, [urlEnv, location.search]);
+    }, [urlEnv]);
 
-    const applyFilter = (data, filter) => {
-        if (filter === 'last100')  {
-            const last100Comandas = [...data].slice(-99).reverse();
-            setFilteredComandas(last100Comandas);
-        } else if (filter === 'emitido') {
-            const filtered = data.filter(comanda => comanda.Estado === 'EMITIDO');
+    const handleFilterClick = (estate) =>{
+
+        if (estate === 'EMITIDO') {
+            const filtered = Comandas.filter(comanda => comanda.Estado === 'EMITIDO');
             setFilteredComandas(filtered);
-        } else if (filter === 'enCurso') {
-            const filtered = data.filter(comanda => comanda.Estado === 'EN CURSO');
+        } else if (estate === 'EN CURSO') {
+            const filtered = Comandas.filter(comanda => comanda.Estado === 'EN CURSO');
             setFilteredComandas(filtered);
-        } else {
-            setFilteredComandas(data);
+        } else if (estate === 'EN ESPERA') {
+            const filtered = Comandas.filter(comanda => comanda.Estado === 'EN ESPERA');
+            setFilteredComandas(filtered);
+        } else if (estate === 'FINALIZADO') {
+            const filtered = Comandas.filter(comanda => comanda.Estado === 'FINALIZADO');
+            setFilteredComandas(filtered);
+        } else if (estate === 'EMITIDO') {
+            const filtered = Comandas.filter(comanda => comanda.Estado === 'EMITIDO');
+            setFilteredComandas(filtered);
+        } else if (estate === 'TODO') {
+            setFilteredComandas(Comandas);
         }
-    };
+    }
 
     const handleClick = (cod) => {
         navigate(`/Detail/${cod}`);
@@ -58,6 +64,24 @@ const ComandaTable = () => {
 
     return (
         <TableContainer>
+                <TableRowfilters>
+                    <Tablefilter></Tablefilter>
+                    <Tablefilter>
+                    <CeldaEstado onClick={() => handleFilterClick('TODO')} $estado='EMITIDO'>Todo</CeldaEstado>
+                    </Tablefilter>
+                    <Tablefilter>
+                        <CeldaEstado onClick={() => handleFilterClick('EMITIDO')} $estado='EMITIDO'>Emitido</CeldaEstado>
+                    </Tablefilter>
+                    <Tablefilter>
+                        <CeldaEstado onClick={() => handleFilterClick('EN ESPERA')} $estado='EN ESPERA'>En espera</CeldaEstado>
+                    </Tablefilter>
+                    <Tablefilter>
+                        <CeldaEstado onClick={() => handleFilterClick('FINALIZADO')} $estado='FINALIZADO'>Finalizado</CeldaEstado>
+                    </Tablefilter>
+                    <Tablefilter>
+                        <CeldaEstado onClick={() => handleFilterClick('EN CURSO')} $estado='EN CURSO'>En curso</CeldaEstado>
+                    </Tablefilter>
+                </TableRowfilters>
             <CustomTable>
                 <TableHeaders>
                     <TableRowHeader>

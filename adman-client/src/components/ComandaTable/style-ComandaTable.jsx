@@ -59,6 +59,7 @@ const TableData = styled.td`
 // Estilos de las celdas basados en estado
 const CeldaEstado = styled.div`
 display:inline-block;
+border:1px solid #07070775;
     color: ${({ $estado }) => {
         switch ($estado) {
             case 'EMITIDO':
@@ -110,6 +111,7 @@ const TableHeaders = styled.thead`
 `;
 
 const FindWork = styled.div`
+
     cursor: pointer;  // Añadir cursor de pointer para indicar que es clicable
     width: 20px;  // Ancho del contenedor
     height: 20px; // Alto del contenedor
@@ -128,6 +130,31 @@ const FinderContainer = styled.div`
     justify-content:center;
 `;
 
+const TableRowfilters = styled.thead`
+    display:flex;
+    justify-content:right;
+
+    @media (max-width: 600px) {        
+        justify-content:center;
+    }
+`;
+
+const Tablefilter = styled.th`
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color:#fcfcfc;
+    cursor:pointer;
+    padding:5px;
+
+    @media (max-width: 600px) {
+        ${CeldaEstado} {
+            width:50px;
+        }
+        font-size: 11px;
+    }
+`;
 
 export {
     TableContainer,
@@ -140,5 +167,7 @@ export {
     TableRowHeader,
     TableRowBody,
     FindWork,
-    FinderContainer
+    FinderContainer,
+    TableRowfilters,
+    Tablefilter
 };
