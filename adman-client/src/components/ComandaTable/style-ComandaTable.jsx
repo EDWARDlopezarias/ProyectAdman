@@ -130,7 +130,7 @@ const FinderContainer = styled.div`
     justify-content:center;
 `;
 
-const TableRowfilters = styled.thead`
+const TableRowfilters = styled.div`
     display:flex;
     justify-content:right;
 
@@ -139,7 +139,7 @@ const TableRowfilters = styled.thead`
     }
 `;
 
-const Tablefilter = styled.th`
+const Tablefilter = styled.div`
     padding: 10px;
     text-align: center;
     font-size: 16px;

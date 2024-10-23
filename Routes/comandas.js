@@ -4,6 +4,66 @@ const router = express.Router();
 const Comanda = require('../models/BdComanda');
 const { Op } = require('sequelize'); // Importar operadores de Sequelize
 
+// Ruta para obtener las comandas por nombre de técnico y estado 'EMITIDO'
+router.get('/pedidoxsuser', async (req, res) => {
+    const { user, estado } = req.query;  // Obtener los parámetros de la query
+
+    try {
+        // Validar que el estado sea 'EMITIDO'
+        if (estado !== 'EMITIDO') {
+            return res.status(400).json({ error: 'El estado debe ser "EMITIDO"' });
+        }
+
+        // Buscar las comandas que coincidan con el técnico y el estado
+        const comandas = await Comanda.findAll({
+            where: {
+                Tech1: {
+                    [Op.eq]: user // Comparar con el nombre del técnico
+                },
+                Estado: {
+                    [Op.eq]: estado // Filtrar por estado 'EMITIDO'
+                }
+            }
+        });
+        // Si no hay comandas, devolver un mensaje adecuado
+        if (comandas.length === 0) {
+            return res.status(200).json([]);
+        }
+
+        res.json(comandas); // Devolver las comandas encontradas
+    } catch (error) {
+        console.error('Error en el servidor al obtener las comandas:', error);
+        res.status(500).json({ error: 'Error al obtener las comandas.' });
+    }
+});
+
+// Obtener la última comanda 'EN CURSO' por nombre del técnico
+router.get('/ultimotrabajo/:nombre', async (req, res) => {
+    console.log('{nombre}')
+    try {
+        const { nombre } = req.params;
+
+        // Buscar la última comanda del técnico con Estado 'EN CURSO'
+        const ultimaComanda = await Comanda.findOne({
+            where: {
+                Tech1: nombre,        // Filtro por nombre del técnico
+                Estado: 'EMITIDO'    // Filtro por estado 'EN CURSO'
+            },
+            order: [['Fecha', 'DESC']]  // Ordenar por la fecha de manera descendente
+        });
+
+        if (ultimaComanda) {
+            res.json(ultimaComanda);  // Si hay una comanda, la devuelve
+        } else {
+            console.log(ultimaComanda);
+            res.status(200).send(null);
+        }
+    } catch (err) {
+        console.error('Error al obtener la última comanda:', err);
+        res.status(500).send(err.message);  // Manejo de errores del servidor
+    }
+});
+
 //Ruta para obtener el conteo de registros entre dos fechas con filtros
 router.get('/countxfechas', async (req, res) => {
     //http://10.10.10.214:3000/api/comandas/countxfechas?fechaInicio=2024-10-01T03:00:00.000Z&fechaFin=2024-10-09T12:27:59.332Z&columnbd=Sector&valuebd=OTROS

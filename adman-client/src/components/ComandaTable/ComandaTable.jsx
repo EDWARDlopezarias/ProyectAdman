@@ -65,7 +65,6 @@ const ComandaTable = () => {
     return (
         <TableContainer>
                 <TableRowfilters>
-                    <Tablefilter></Tablefilter>
                     <Tablefilter>
                     <CeldaEstado onClick={() => handleFilterClick('TODO')} $estado='EMITIDO'>Todo</CeldaEstado>
                     </Tablefilter>

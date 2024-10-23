@@ -24,7 +24,7 @@ const urlEnv = process.env.REACT_APP_URL_HOME;
 const ComandaDetails = () => {
   const [comanda, setComanda] = useState(null);
   const [error, setError] = useState(null);
-  const [Tr, setTr] = useState();
+  const [Tr, setTr] = useState('');
   const [Tecnico, setTecnico] = useState('');
   const [update, setUpdate] = useState(false);
   const [SelectValue, setSelectValue] = useState('');
@@ -38,7 +38,12 @@ const ComandaDetails = () => {
       try {
         const response = await axios.get(`${urlEnv}/api/comandas/${cod}`);
         setComanda(response.data);
-        setTr(response.data.TR)
+
+        if(response.data.TR) {
+          setTr(response.data.TR)
+        } else {
+          setTr('Sin trabajo Realizado')
+        }
         setTecnico(response.data.Tech1)
       } catch (err) {
         setError('Error al obtener la información de la comanda.');
@@ -65,13 +70,13 @@ const ComandaDetails = () => {
     setSelectValue(value)
   }
 
+  const FechaHoy = new Date()
   const HandleSaveClick = () =>{
 
     switch(comanda.Estado) {
 
       case 'EMITIDO':
         // Update the comanda
-        const FechaHoy = new Date()
         axios.put(`${urlEnv}/api/comandas/${cod}`, {
           ...comanda,
           TR: Tr,
@@ -92,7 +97,6 @@ const ComandaDetails = () => {
           Estado: 'FINALIZADO'
         })
         .then(response => {
-            console.log('Comanda updated en curso:', response.data);
             alert('Trabajo Actualizado');
         })
         .catch(error => console.error('Error updating comanda:', error));
