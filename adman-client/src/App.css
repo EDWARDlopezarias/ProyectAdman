@@ -2,15 +2,15 @@
     /*
     background: rgb(50,14,112);
     background: linear-gradient(189deg, rgba(50,14,112,1) 0%, rgba(36,150,145,1) 100%); */
-    background-color:hsla(217,79%,53%,1);
+    background-color:hsla(201,8%,21%,1);
     background-image:
-    radial-gradient(at 84% 7%, hsla(235,95%,69%,1) 0px, transparent 50%),
-    radial-gradient(at 11% 13%, hsla(223,67%,64%,1) 0px, transparent 50%),
-    radial-gradient(at 5% 33%, hsla(229,79%,69%,1) 0px, transparent 50%),
-    radial-gradient(at 13% 2%, hsla(210,94%,53%,1) 0px, transparent 50%),
-    radial-gradient(at 57% 82%, hsla(231,72%,55%,1) 0px, transparent 50%),
-    radial-gradient(at 50% 15%, hsla(236,95%,54%,1) 0px, transparent 50%),
-    radial-gradient(at 73% 38%, hsla(205,54%,32%,1) 0px, transparent 50%);
+    radial-gradient(at 95% 3%, hsla(0,1%,45%,1) 0px, transparent 50%),
+    radial-gradient(at 52% 4%, hsla(223,5%,14%,1) 0px, transparent 50%),
+    radial-gradient(at 0% 59%, hsla(226,2%,40%,1) 0px, transparent 50%),
+    radial-gradient(at 100% 65%, hsla(211,3%,14%,1) 0px, transparent 50%),
+    radial-gradient(at 86% 67%, hsla(209,2%,54%,1) 0px, transparent 50%),
+    radial-gradient(at 21% 98%, hsla(240,2%,13%,1) 0px, transparent 50%),
+    radial-gradient(at 12% 0%, hsla(205,4%,53%,1) 0px, transparent 50%);
     /*background-color: rgb(85, 85, 85);*/
     /* background-image: url(https://www.imagui.com/i/hd-fondos-pantalla-azul-textura-textura-18484502.webp); */
     min-height: 100vh; /* Asegura que el contenedor ocupe al menos el 100% de la altura de la pantalla */
@@ -22,6 +22,7 @@
     padding-right: 15px;
     padding-bottom: 20px;
 }
+
 
 @media (max-width:600px){
     .content {

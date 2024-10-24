@@ -8,7 +8,7 @@ const BannerWrapper = styled.header`
     top: 0;
     left: 0;
     width: 100%;
-    height: ${props => props.$isHovered ? '28%' : '8%'};
+    height: ${props => props.$isHovered ? '30%' : '8%'};
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -78,9 +78,14 @@ const SubMenu = styled.div`
         cursor:pointer;
     }
 
-    @media (max-width: 650px) {
-        font-size: medium;
-        text-align: left;
+    @media (max-width: 650px) {        
+
+        a, label {
+        text-decoration:none;
+        padding:8px;
+        color:white;
+        font-size:medium;
+        }
     }
 `;
 

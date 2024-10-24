@@ -14,6 +14,14 @@ const CardContainer = styled.div`
     background-color:#0c0a0ab9;
     margin:5px;
     color:#ffff;
+
+    @media (max-width:650px){
+      padding:10px;
+      margin:0px;
+      border-radius:0px;
+      width:auto;
+      border-bottom:4px solid;
+    }
 `;
 
 const CardTitle = styled.div`

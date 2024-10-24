@@ -106,10 +106,10 @@ function Banner() {
                         <SubMenu $isActive={activeSubMenu === 'Administrador'} $left="0%">
                             <label></label>
                             <label onClick={() => handleMenuClick()}>Editor avanzado de trabajos</label>
-                            <label onClick={() => handleMenuClick()}>Gestor de usuarios</label>
+                            <Link to="/admin"  onClick={() => handleMenuClick()}>Gestor de usuarios</Link>
                             <label onClick={() => handleMenuClick()}>Gestor de máquinas</label>
                             <Link to="/BdManager"  onClick={() => handleMenuClick()}>Gestor de Base de datos</Link>
-                            <Link to="/admin"  onClick={() => handleMenuClick()}>Extras</Link>
+                            <label onClick={() => handleMenuClick()}>Extras</label>
                         </SubMenu>
                     </MenuItem>
                 </StyledNav>

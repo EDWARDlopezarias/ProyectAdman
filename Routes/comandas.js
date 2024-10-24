@@ -135,15 +135,32 @@ router.get('/:cod', async (req, res) => {
 
 // Obtener todas las comandas
 router.get('/', async (req, res) => {
-    console.log('punto alcanzado');
-    try {
-        const comandas = await Comanda.findAll({
-            order: [['Fecha', 'DESC']],
-            limit: 100
-        });
-        res.json(comandas);
-    } catch (err) {
-        res.status(500).send(err.message);
+    const {estado} = req.query;
+
+    if (estado) {
+        try {
+            const comandas = await Comanda.findAll({
+                where: {
+                    Estado: estado
+                },
+                order: [['Fecha', 'DESC']],
+                limit: 100,
+            });
+            res.json(comandas);
+        } catch (err) {
+            res.status(500).send(err.message);
+        }
+
+    } else {
+        try {
+            const comandas = await Comanda.findAll({
+                order: [['Fecha', 'DESC']],
+                limit: 100,
+            });
+            res.json(comandas);
+        } catch (err) {
+            res.status(500).send(err.message);
+        }
     }
 });
 

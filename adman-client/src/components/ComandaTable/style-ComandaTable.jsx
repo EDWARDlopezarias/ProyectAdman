@@ -17,8 +17,8 @@ const TableCell = styled.th`
     padding: 10px;
     text-align: center;
     font-size: 20px;
-    font-weight: 500;
-    border-bottom: 2px solid #ddd;
+    font-weight: 600;
+    border-bottom: 2px solid #ffffff;
     color:#fcfcfc;
 
     @media (max-width: 600px) {
@@ -29,7 +29,7 @@ const TableCell = styled.th`
 
 // Filas
 const TableRowHeader = styled.tr`
-    background-color:#1e4864a9;
+    background-color:#1e48645e;
 `;
 
 // Filas
@@ -37,7 +37,7 @@ const TableRowBody = styled.tr`
     background-color:#1e48645c;
 
     &:hover {
-        background-color:#022641dc;
+        background-color:#0226416f;
     }
 
     `;
@@ -48,7 +48,8 @@ const TableData = styled.td`
     padding: 10px;
     text-align: center;
     font-weight:500;
-    background-color:#d4d4d45a;
+    background-color:#d4d4d42f;
+    color:#000000;
 
 
     @media (max-width: 600px) {

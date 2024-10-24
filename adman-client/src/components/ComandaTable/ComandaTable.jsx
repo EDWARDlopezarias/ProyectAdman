@@ -37,24 +37,18 @@ const ComandaTable = () => {
 
     const handleFilterClick = (estate) =>{
 
-        if (estate === 'EMITIDO') {
-            const filtered = Comandas.filter(comanda => comanda.Estado === 'EMITIDO');
-            setFilteredComandas(filtered);
-        } else if (estate === 'EN CURSO') {
-            const filtered = Comandas.filter(comanda => comanda.Estado === 'EN CURSO');
-            setFilteredComandas(filtered);
-        } else if (estate === 'EN ESPERA') {
-            const filtered = Comandas.filter(comanda => comanda.Estado === 'EN ESPERA');
-            setFilteredComandas(filtered);
-        } else if (estate === 'FINALIZADO') {
-            const filtered = Comandas.filter(comanda => comanda.Estado === 'FINALIZADO');
-            setFilteredComandas(filtered);
-        } else if (estate === 'EMITIDO') {
-            const filtered = Comandas.filter(comanda => comanda.Estado === 'EMITIDO');
-            setFilteredComandas(filtered);
-        } else if (estate === 'TODO') {
+        if (estate === 'TODO') {
             setFilteredComandas(Comandas);
+        } else{
+            axios.get(`${urlEnv}/api/comandas`,{
+                params: {estado: estate}
+            })
+            .then(response => {
+                setFilteredComandas(response.data);
+            })
+            .catch(error => console.error('Error al obtener las comandas:', error));
         }
+        
     }
 
     const handleClick = (cod) => {

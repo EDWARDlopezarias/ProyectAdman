@@ -1,5 +1,6 @@
+import styled from 'styled-components';
 
-.number-container {
+const NumberContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -12,28 +13,37 @@
     background-color: rgba(17, 25, 40, 0.75);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.125);
-}
+`;
 
-.number-title{
+const NumberTitle = styled.p`
     color: rgb(255, 255, 255);
     font-size: x-large;
     margin: 0px;
     position: relative;
     top: -10px;
-}
-.number-value{
+`;
+
+const NumberValue = styled.p`
     font-size: 100px;
     margin: 0px;
     width: 200px;
     text-align: center;
     filter: drop-shadow(2px 2px 2px rgb(0, 0, 0));
-    
-}
-.number-nombre{
+    color:${(props) => props.$Color};
+`;
+
+const NumberName = styled.p`
     position: relative;
     top: 10px;
     color: rgb(255, 255, 255);
     font-size: large;
     margin: 0px;
     font-weight: bolder;
+`;
+
+export {
+    NumberContainer,
+    NumberTitle,
+    NumberValue,
+    NumberName
 }

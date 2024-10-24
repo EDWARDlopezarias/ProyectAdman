@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './GraphNumber.css';
+import {
+    NumberContainer,
+    NumberTitle,
+    NumberValue,
+    NumberName
+} from './Style-GraphNumber.jsx'
 
 const GraphNumber = ({title, nombre, color, columnbd, valuebd}) =>{
 
@@ -24,11 +29,11 @@ const GraphNumber = ({title, nombre, color, columnbd, valuebd}) =>{
     }, [valuebd, columnbd]);  // Escuchar cambios en el estado para hacer nuevas consultas
 
     return(
-        <div className='number-container'>
-            <p className='number-title'>{title}</p>
-            <p className='number-value' style={{color: color}} > {count} </p>
-            <p className='number-nombre'>{nombre}</p>
-        </div>
+        <NumberContainer>
+            <NumberTitle>{title}</NumberTitle>
+            <NumberValue $Color={color} > {count} </NumberValue>
+            <NumberName >{nombre}</NumberName>
+        </NumberContainer>
     );
 }
 
