@@ -11,38 +11,95 @@ import {
 
 
 function Dashboard(){
-    const hoy = new Date()
+    const hoy = new Date();
+    const ahora = new Date();
     const lunesActual = new Date();
     const primerDiaMes = new Date(hoy.getFullYear(), hoy.getMonth(), 1);  // Primer día del mes
     lunesActual.setDate(lunesActual.getDate() - (lunesActual.getDay() === 0 ? 6 : lunesActual.getDay() - 1));
     lunesActual.setHours(1, 0, 0, 0);
     primerDiaMes.setHours(1, 0, 0, 0);
+    hoy.setHours(1, 0, 0, 0);
 
         return(
         <DashboardContainer>
             <DashboardTitle>Dashboard</DashboardTitle>
-            <DashboardTitleDiv>Información diaria</DashboardTitleDiv>
+            <DashboardTitleDiv>Totalizador</DashboardTitleDiv>
             <DashboardSubContainer>
                 <GraphNumber
-                    nombre='Comandas'
+                    nombre='Pedidos'
                     title='Total en curso'
                     color='#a1a0e9'
                     columnbd='Estado'
                     valuebd='EN CURSO'
                 />
                 <GraphNumber
-                    nombre='Comandas'
-                    title='Total pendientes'
+                    nombre='Pedidos'
+                    title='Total pedido'
                     color='#a1a0e9'
                     columnbd='Estado'
                     valuebd='EMITIDO'
+                />
+                <GraphNumber
+                    nombre='Pedidos'
+                    title='Total en pausa'
+                    color='#a1a0e9'
+                    columnbd='Estado'
+                    valuebd='EN ESPERA'
+                />
+            </DashboardSubContainer>
+            <DashboardTitleDiv>Información Diaria</DashboardTitleDiv>
+            <DashboardSubContainer>
+                <GrapherArc
+                    fechaInicio={hoy}
+                    fechaFin={ahora}
+                    columnbd='Sector'
+                    valuebd='EXTRUSIÓN'
+                    title='Total Diario'
+                    nombre='Pedidos por extrusión'
+                    color='#374dce'
+                />
+                <GrapherArc
+                    fechaInicio={hoy}
+                    fechaFin={ahora}
+                    columnbd='Sector'
+                    valuebd='CONF-FONDO'
+                    title='Total Diario'
+                    nombre='Pedidos por Fondo'
+                    color='#374dce'
+                />
+                <GrapherArc
+                    fechaInicio={hoy}
+                    fechaFin={ahora}
+                    columnbd='Sector'
+                    valuebd='CONF-ARRANQUE'
+                    title='Total Diario'
+                    nombre='Pedidos por Arranque'
+                    color='#374dce'
+                />
+                <GrapherArc
+                    fechaInicio={hoy}
+                    fechaFin={ahora}
+                    columnbd='Sector'
+                    valuebd='CONF-CAMISETA'
+                    title='Total Diario'
+                    nombre='Pedidos por Camiseta'
+                    color='#374dce'
+                />
+                <GrapherArc
+                    fechaInicio={hoy}
+                    fechaFin={ahora}
+                    columnbd='Sector'
+                    valuebd='OTROS'
+                    title='Total Diario'
+                    nombre='Otros pedidos'
+                    color='#374dce'
                 />
             </DashboardSubContainer>
             <DashboardTitleDiv>Información semanal</DashboardTitleDiv>
             <DashboardSubContainer>
                 <GrapherArc
                     fechaInicio={lunesActual}
-                    fechaFin={hoy}
+                    fechaFin={ahora}
                     columnbd='Sector'
                     valuebd='EXTRUSIÓN'
                     title='Total Semanal'
@@ -51,7 +108,7 @@ function Dashboard(){
                 />
                 <GrapherArc
                     fechaInicio={lunesActual}
-                    fechaFin={hoy}
+                    fechaFin={ahora}
                     columnbd='Sector'
                     valuebd='CONF-FONDO'
                     title='Total Semanal'
@@ -60,7 +117,7 @@ function Dashboard(){
                 />
                 <GrapherArc
                     fechaInicio={lunesActual}
-                    fechaFin={hoy}
+                    fechaFin={ahora}
                     columnbd='Sector'
                     valuebd='CONF-ARRANQUE'
                     title='Total Semanal'
@@ -69,7 +126,7 @@ function Dashboard(){
                 />
                 <GrapherArc
                     fechaInicio={lunesActual}
-                    fechaFin={hoy}
+                    fechaFin={ahora}
                     columnbd='Sector'
                     valuebd='CONF-CAMISETA'
                     title='Total Semanal'
@@ -78,7 +135,7 @@ function Dashboard(){
                 />
                 <GrapherArc
                     fechaInicio={lunesActual}
-                    fechaFin={hoy}
+                    fechaFin={ahora}
                     columnbd='Sector'
                     valuebd='OTROS'
                     title='Total Semanal'
@@ -90,7 +147,7 @@ function Dashboard(){
             <DashboardSubContainer>                
                 <GrapherArc
                     fechaInicio={primerDiaMes}
-                    fechaFin={hoy}
+                    fechaFin={ahora}
                     columnbd='Sector'
                     valuebd='EXTRUSIÓN'
                     title='Total Mensual'
@@ -99,7 +156,7 @@ function Dashboard(){
                 />
                 <GrapherArc
                     fechaInicio={primerDiaMes}
-                    fechaFin={hoy}
+                    fechaFin={ahora}
                     columnbd='Sector'
                     valuebd='CONF-FONDO'
                     title='Total Mensual'
@@ -108,7 +165,7 @@ function Dashboard(){
                 />
                 <GrapherArc
                     fechaInicio={primerDiaMes}
-                    fechaFin={hoy}
+                    fechaFin={ahora}
                     columnbd='Sector'
                     valuebd='CONF-ARRANQUE'
                     title='Total Mensual'
@@ -117,7 +174,7 @@ function Dashboard(){
                 />
                 <GrapherArc
                     fechaInicio={primerDiaMes}
-                    fechaFin={hoy}
+                    fechaFin={ahora}
                     columnbd='Sector'
                     valuebd='CONF-CAMISETA'
                     title='Total Mensual'
@@ -126,7 +183,7 @@ function Dashboard(){
                 />
                 <GrapherArc
                     fechaInicio={primerDiaMes}
-                    fechaFin={hoy}
+                    fechaFin={ahora}
                     columnbd='Sector'
                     valuebd='OTROS'
                     title='Total Mensual'

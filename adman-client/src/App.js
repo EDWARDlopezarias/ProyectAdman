@@ -7,7 +7,6 @@ import Banner from './components/Banner/Banner'; // Importa el componente Banner
 import Admin from './components/Routes/Admin/Admin';
 import Supervisor from './components/Routes/Supervisor/Supervisor';
 import Users from './components/Routes/Usuario/Usuario';
-import EditComanda from './components/EditComanda/EditComanda';
 import Dashboard from './components/Routes/Dashboard/Dashboard';
 import ListaPedidos from './components/Routes/ListaPedidos/ListaPedidos';
 import LoadWindow from './components/LoadWindow/LoadWindow';
@@ -27,7 +26,6 @@ function App() {
                         <Route path="/Admin" element={<Admin />} />
                         <Route path="/Supervisor" element={<Supervisor />} />
                         <Route path="/Users" element={<Users />} />
-                        <Route path="/Edit-comanda" element={<EditComanda />} />
                         <Route path="/BdManager" element={<LoadWindow />} />
                         <Route path="/Detail/:cod" element={<PedidoDetail />} />
                     </Routes>

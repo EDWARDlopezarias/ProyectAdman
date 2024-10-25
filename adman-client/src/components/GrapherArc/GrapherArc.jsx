@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import GraphArc from '../GraphArc/GraphArc';
+import GraphArc from '../GrapherArc/GraphArc/GraphArc';
 
 // Código para saber cantidad entre fechas y filtros
 const CountByFechasAndFilters = (fechaInicio, fechaFin, columnbd, valuebd) => {
