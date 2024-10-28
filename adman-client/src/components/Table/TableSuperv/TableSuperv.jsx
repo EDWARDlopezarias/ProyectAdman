@@ -11,15 +11,15 @@ import {
     TMBody,
     TMBodyRow,
     TMBodyData
- } from './Style-TableMachines.jsx';
+ } from './Style-TableSuperv.jsx';
 
 
-const TableMachines = () => {
+const TableSuperv = () => {
     const [Maquinas, setMaquinas] = useState([]);
     const urlEnv = process.env.REACT_APP_URL_HOME;
 
     useEffect(()=>{
-        axios.get(`${urlEnv}/api/maquinas`)
+        axios.get(`${urlEnv}/api/supervisores`)
             .then( response => {
                 setMaquinas(response.data);
             })
@@ -28,23 +28,21 @@ const TableMachines = () => {
 
     return (
         <TMContainer>
-            <TMTitle>Lista de Máquinas</TMTitle>
+            <TMTitle>Lista de Supervisores</TMTitle>
             <TMTable>
                 <TMHeader>
                     <TMHeaderRow>
                         <TMHeadData>Id</TMHeadData>
-                        <TMHeadData>Codigo de máquina</TMHeadData>
-                        <TMHeadData>Máquina</TMHeadData>
-                        <TMHeadData>Sector</TMHeadData>
+                        <TMHeadData>Supervisor</TMHeadData>
+                        <TMHeadData>Sector Asignado</TMHeadData>
                     </TMHeaderRow>
                 </TMHeader>
                 <TMBody>
-                    {Maquinas.map((maq)=>(
-                        <TMBodyRow key={maq.Id}>
-                            <TMBodyData>{maq.Id}</TMBodyData>
-                            <TMBodyData>{maq.CODMAQUINA}</TMBodyData>
-                            <TMBodyData>{maq.MAQUINA}</TMBodyData>
-                            <TMBodyData>{maq.Sector}</TMBodyData>
+                    {Maquinas.map((sup)=>(
+                        <TMBodyRow key={sup.Id}>
+                            <TMBodyData>{sup.Id}</TMBodyData>
+                            <TMBodyData>{sup.NyAsup}</TMBodyData>
+                            <TMBodyData>{sup.SECsup}</TMBodyData>
                         </TMBodyRow>
                     ))}
                 </TMBody>
@@ -54,4 +52,4 @@ const TableMachines = () => {
 
 };
 
-export default TableMachines;
+export default TableSuperv;

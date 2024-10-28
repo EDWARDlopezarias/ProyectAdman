@@ -12,6 +12,11 @@ import ListaPedidos from './components/Routes/ListaPedidos/ListaPedidos';
 import LoadWindow from './components/LoadWindow/LoadWindow';
 import PedidoDetail from './components/PedidoDetail/PedidoDetail'
 import './App.css'
+import TableMachines from './components/Table/TableMachines/TableMachines';
+import GridUSers from './components/Grid/GridUsers/GridUsers';
+import TableTech from './components/Table/TableTech/TableTech'
+import UserPage from './components/Routes/Admin/UserPage/UserPage'
+import TableSuperv from './components/Table/TableSuperv/TableSuperv'
 
 function App() {
     return (
@@ -23,11 +28,16 @@ function App() {
                         <Route path="/Dashboard" element={<Dashboard />} />
                         <Route path="/" element={<ListaPedidos />} />
                         <Route path="/new-comanda" element={<NewComandaForm />} />
-                        <Route path="/Admin" element={<Admin />} />
+                        <Route path="/Users/Pending" element={<GridUSers />} />
+                        <Route path="/Users" element={<Admin />} />
                         <Route path="/Supervisor" element={<Supervisor />} />
                         <Route path="/Users" element={<Users />} />
                         <Route path="/BdManager" element={<LoadWindow />} />
                         <Route path="/Detail/:cod" element={<PedidoDetail />} />
+                        <Route path="/Machines" element={<TableMachines />} />
+                        <Route path='/Users/Table/Tech' element={<TableTech />}/>
+                        <Route path='/Users/Table/Superv' element={<TableSuperv />}/>
+                        <Route path='/Admin/UserPage' element={<UserPage />} />
                     </Routes>
                 </div>
             </div>

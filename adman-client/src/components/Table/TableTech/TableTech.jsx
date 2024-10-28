@@ -11,15 +11,15 @@ import {
     TMBody,
     TMBodyRow,
     TMBodyData
- } from './Style-TableMachines.jsx';
+ } from './Style-TableTech.jsx';
 
 
-const TableMachines = () => {
+const TableTech = () => {
     const [Maquinas, setMaquinas] = useState([]);
     const urlEnv = process.env.REACT_APP_URL_HOME;
 
     useEffect(()=>{
-        axios.get(`${urlEnv}/api/maquinas`)
+        axios.get(`${urlEnv}/api/Tech`)
             .then( response => {
                 setMaquinas(response.data);
             })
@@ -28,23 +28,21 @@ const TableMachines = () => {
 
     return (
         <TMContainer>
-            <TMTitle>Lista de Máquinas</TMTitle>
+            <TMTitle>Lista de Técnicos</TMTitle>
             <TMTable>
                 <TMHeader>
                     <TMHeaderRow>
                         <TMHeadData>Id</TMHeadData>
-                        <TMHeadData>Codigo de máquina</TMHeadData>
-                        <TMHeadData>Máquina</TMHeadData>
-                        <TMHeadData>Sector</TMHeadData>
+                        <TMHeadData>Técnico</TMHeadData>
+                        <TMHeadData>Sector Asignado</TMHeadData>
                     </TMHeaderRow>
                 </TMHeader>
                 <TMBody>
                     {Maquinas.map((maq)=>(
                         <TMBodyRow key={maq.Id}>
                             <TMBodyData>{maq.Id}</TMBodyData>
-                            <TMBodyData>{maq.CODMAQUINA}</TMBodyData>
-                            <TMBodyData>{maq.MAQUINA}</TMBodyData>
-                            <TMBodyData>{maq.Sector}</TMBodyData>
+                            <TMBodyData>{maq.Tecnico}</TMBodyData>
+                            <TMBodyData>{maq.Sector_1}</TMBodyData>
                         </TMBodyRow>
                     ))}
                 </TMBody>
@@ -54,4 +52,4 @@ const TableMachines = () => {
 
 };
 
-export default TableMachines;
+export default TableTech;

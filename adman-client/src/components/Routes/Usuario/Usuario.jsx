@@ -1,12 +1,12 @@
-import React from "react";
-import './Usuario.css';
+import React from 'react';
+import {UserContentainer} from './Style-Usuario.jsx'
 
 function Users(){
 
     return (
-        <div className="contenedor-users">
+        <UserContentainer >
             Esta es la pagina de usuarios
-        </div>
+        </UserContentainer>
     )
 }
 

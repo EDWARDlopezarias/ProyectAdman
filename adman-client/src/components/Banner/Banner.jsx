@@ -30,7 +30,7 @@ function Banner() {
             setIsHovered(false)
         }}>
             <BannerContent>
-                <Logo to="/Dashboard">ADman</Logo>
+                <Logo to="/Dashboard">KATH.ia</Logo>
                 <StyledNav>
                     <MenuItem
                         onMouseEnter={() => {
@@ -87,7 +87,7 @@ function Banner() {
                             <label></label>
                             <Link to="/Edit-comanda"  onClick={() => handleMenuClick()}>Iniciar/finalizar trabajos</Link>
                             <label onClick={() => handleMenuClick()}>Mi historial</label>
-                            <label onClick={() => handleMenuClick()}>Mis pendientes</label>
+                            <Link to={'/Users/Pending'} onClick={() => handleMenuClick()}>Pendientes</Link>
                             <label onClick={() => handleMenuClick()}>Trabajos en espera</label>
                             <Link to="/users"  onClick={() => handleMenuClick()}>Estadisticas</Link>
                         </SubMenu>
@@ -106,8 +106,8 @@ function Banner() {
                         <SubMenu $isActive={activeSubMenu === 'Administrador'} $left="0%">
                             <label></label>
                             <label onClick={() => handleMenuClick()}>Editor avanzado de trabajos</label>
-                            <Link to="/admin"  onClick={() => handleMenuClick()}>Gestor de usuarios</Link>
-                            <label onClick={() => handleMenuClick()}>Gestor de máquinas</label>
+                            <Link to='/Admin/UserPage'  onClick={() => handleMenuClick()}>Gestor de usuarios</Link>
+                            <Link to='/Machines' onClick={() => handleMenuClick()}>Gestor de máquinas</Link>
                             <Link to="/BdManager"  onClick={() => handleMenuClick()}>Gestor de Base de datos</Link>
                             <label onClick={() => handleMenuClick()}>Extras</label>
                         </SubMenu>
