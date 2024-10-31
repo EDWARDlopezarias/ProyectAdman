@@ -8,20 +8,16 @@ const BannerWrapper = styled.header`
     top: 0;
     left: 0;
     width: 100%;
-    height: ${props => props.$isHovered ? '30%' : '8%'};
+    height: ${props => props.$isHovered ? '15%' : 'auto'};
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     color: white;
-    padding: 10px 40px;
+    padding: 10px 40px ;
     z-index: 1000;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     transition: height 0.2s ease;
-
-    @media (max-width: 650px) {
-        padding: 0;
-    }
 `;
 
 const BannerContent = styled.div`

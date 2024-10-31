@@ -157,6 +157,50 @@ const Tablefilter = styled.div`
     }
 `;
 
+const SearchBarContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+  font-size:medium;
+`;
+
+// Campo de entrada para escribir el término de búsqueda
+const SearchBarInput = styled.input`
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+`;
+
+// Botón de búsqueda
+const SearchBarButton = styled.button`
+  background-color: #007bff;
+  border: none;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius:0px 10px 10px 0px;
+  transition: background-color 0.2s ease-out;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+// Icono de flecha
+const ArrowIcon = styled.span`
+  font-size: 16px;
+  color: white;
+`;
+
+
 export {
     TableContainer,
     CustomTable,
@@ -170,5 +214,9 @@ export {
     FindWork,
     FinderContainer,
     TableRowfilters,
-    Tablefilter
+    Tablefilter,
+    SearchBarButton,
+    SearchBarContainer,
+    SearchBarInput,
+    ArrowIcon
 };

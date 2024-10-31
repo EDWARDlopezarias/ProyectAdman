@@ -8,7 +8,15 @@ const TMTable = styled.table`
     border-collapse:collapse;
 `;
 const TMTitle = styled.div`
-    font-size:50px;
+    font-size:70px;
+    font-weight:600;
+    letter-spacing: -2px;
+    color:#ffff;
+    
+    @media (max-width: 600px) {
+        text-align:center;
+        font-size:45px;
+    }
 `;
 const TMSubTitle = styled.div`
     font-size:xx-large;

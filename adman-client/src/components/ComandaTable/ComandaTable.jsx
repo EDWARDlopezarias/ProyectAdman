@@ -15,13 +15,20 @@ import {
     FindWork,
     FinderContainer,
     TableRowfilters,
-    Tablefilter
+    Tablefilter,
+    SearchBarButton,
+    SearchBarContainer,
+    SearchBarInput,
+    ArrowIcon
 } from './style-ComandaTable.jsx'; // Supongamos que lo exportas de este archivo
+
+import SelectListTable from './Components/SelectListTable.jsx'
 
 
 const ComandaTable = () => {
     const [Comandas, setComandas] = useState([]);
-    const [filteredComandas, setFilteredComandas] = useState([]);
+    const [filteredComandas, setFilteredComandas] = useState([]);    
+    const [SelectValue, setSelectValue] = useState('');
     const urlEnv = process.env.REACT_APP_URL_HOME;
     const navigate = useNavigate();
     
@@ -55,12 +62,73 @@ const ComandaTable = () => {
         navigate(`/Detail/${cod}`);
       };
 
+    const [searchText, setSearchText] = useState("");      
+    const handleSearch = () => {
+        console.log("Texto de búsqueda:", searchText);
+    };
+
+    const handleSelectChange = (value) =>{
+        setSelectValue(value);
+    }
+
+    const Encabezados = [
+        {
+            "Id": 1,
+            "Header": "Código",
+            "HeaderBD": "COD"
+        },
+        {
+            "Id": 2,
+            "Header": "Estado",
+            "HeaderBD": "Estado"
+        },
+        {
+            "Id": 3,
+            "Header": "Máquina",
+            "HeaderBD": "MAQ"
+        },
+        {
+            "Id": 4,
+            "Header": "Fecha",
+            "HeaderBD": "Fecha"
+        },
+        {
+            "Id": 5,
+            "Header": "Criticidad",
+            "HeaderBD": "CRITICIDAD"
+        },
+        {
+            "Id": 6,
+            "Header": "Sector",
+            "HeaderBD": "Sector"
+        }
+    ]
+
 
     return (
         <TableContainer>
+                <SearchBarContainer>
+                    <SelectListTable 
+                        Array={Encabezados}
+                        onChange={handleSelectChange}
+                        column='Header'
+                        defaultValue={Encabezados[0].Header}
+                    />
+                    <SearchBarInput
+                        type="text"
+                        placeholder="Buscar..."
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value.slice(0, 30))}
+                    />
+                    <SearchBarButton onClick={handleSearch}>
+                        <ArrowIcon>→</ArrowIcon>
+                    </SearchBarButton>
+                </SearchBarContainer>
                 <TableRowfilters>
                     <Tablefilter>
-                    <CeldaEstado onClick={() => handleFilterClick('TODO')} $estado='EMITIDO'>Todo</CeldaEstado>
+                    </Tablefilter>
+                    <Tablefilter>
+                        <CeldaEstado onClick={() => handleFilterClick('TODO')} $estado='EMITIDO'>Todo</CeldaEstado>
                     </Tablefilter>
                     <Tablefilter>
                         <CeldaEstado onClick={() => handleFilterClick('EMITIDO')} $estado='EMITIDO'>Emitido</CeldaEstado>
