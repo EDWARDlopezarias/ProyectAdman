@@ -101,6 +101,28 @@ router.get('/count/dataxcolumn', async (req, res) => {
     }
 });
 
+// Ruta para obtener la lista de trabajos de comandas por columna y valor de columna
+router.get('/find/dataxcolumn', async (req, res) => {
+    const { columnbd, valuebd } = req.query;  // Obtener columna y valor desde los parámetros de la URL
+
+    try {
+        // Convertir el valor a un número si es posible, si no, quedará como NaN
+        const Numeric = !isNaN(valuebd) ? Number(valuebd) : null;
+
+        // Generar la condición `where` usando `LIKE` para texto o coincidencia exacta para números
+        const whereCondition = Numeric !== null
+            ? { [columnbd]: Numeric }  // Búsqueda exacta si es un número
+            : { [columnbd]: { [Op.like]: `%${valuebd}%` } };  // Búsqueda `LIKE` si es texto
+
+        const listByEstado = await Comanda.findAll({
+            where: whereCondition  // Usar la condición generada
+        });
+        res.json(listByEstado);
+    } catch (error) {
+        res.status(500).json({ error: `Error al encontrar los pedidos con la columna ${columnbd} y valor ${valuebd}` });
+    }
+});
+
 // Ruta para obtener el conteo de registros entre dos fechas con estado "EMITIDO"
 router.get('/count-por-fechas', async (req, res) => {
     const { fechaInicio, fechaFin } = req.query;  // Obtener las fechas desde los parámetros de la query

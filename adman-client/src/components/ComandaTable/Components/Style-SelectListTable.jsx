@@ -8,7 +8,7 @@ const SelectContainer = styled.div`
 const Select = styled.select`
     background-color:#1e48645c;
     padding:10px;
-    font-size:10px;
+    font-size:9px;
     border:none;
     border-radius:10px 0px 0px 10px;
     box-shadow:inset 0px 0px 2px 2px #00000061;

@@ -171,15 +171,18 @@ const SearchBarContainer = styled.div`
 // Campo de entrada para escribir el término de búsqueda
 const SearchBarInput = styled.input`
   flex: 1;
+  background-color: #1e48645c;  
+  box-shadow:inset 0px 0px 2px 2px #00000061;
   padding: 10px;
   border: none;
   outline: none;
   font-size: 16px;
+  height:19px;
 `;
 
 // Botón de búsqueda
 const SearchBarButton = styled.button`
-  background-color: #007bff;
+  background-color: #1e48645c;
   border: none;
   padding: 10px;
   display: flex;
@@ -188,6 +191,7 @@ const SearchBarButton = styled.button`
   cursor: pointer;
   border-radius:0px 10px 10px 0px;
   transition: background-color 0.2s ease-out;
+  box-shadow:inset 0px 0px 2px 2px #00000061;
 
   &:hover {
     background-color: #0056b3;

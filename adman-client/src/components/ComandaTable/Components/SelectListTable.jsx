@@ -5,15 +5,16 @@ import {
     Option
 } from "./Style-SelectListTable";
 
-const SelectList = ({Array, onChange, column, defaultValue}) => {
+const SelectList = ({Array, onChange, column, finder}) => {
 
     const handleSelectChange = (e) =>{
-        onChange(e.target.value);
+        const ValueFind = Array.find(option => option[column] === e.target.value)[finder];
+        onChange(ValueFind);
     }
+    
     return (
         <SelectContainer>
             <Select onChange={handleSelectChange} >
-                <Option value={defaultValue}>{defaultValue}</Option>
                 {Array.map((option) => (
                     <Option key={option.Id} value={option[column]}>{option[column]}</Option>
                 ))}

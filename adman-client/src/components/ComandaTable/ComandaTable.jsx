@@ -28,7 +28,8 @@ import SelectListTable from './Components/SelectListTable.jsx'
 const ComandaTable = () => {
     const [Comandas, setComandas] = useState([]);
     const [filteredComandas, setFilteredComandas] = useState([]);    
-    const [SelectValue, setSelectValue] = useState('');
+    const [SelectValue, setSelectValue] = useState('COD');
+    const [searchText, setSearchText] = useState('');      
     const urlEnv = process.env.REACT_APP_URL_HOME;
     const navigate = useNavigate();
     
@@ -41,36 +42,7 @@ const ComandaTable = () => {
             })
             .catch(error => console.error('Error al obtener las comandas:', error));
     }, [urlEnv]);
-
-    const handleFilterClick = (estate) =>{
-
-        if (estate === 'TODO') {
-            setFilteredComandas(Comandas);
-        } else{
-            axios.get(`${urlEnv}/api/comandas`,{
-                params: {estado: estate}
-            })
-            .then(response => {
-                setFilteredComandas(response.data);
-            })
-            .catch(error => console.error('Error al obtener las comandas:', error));
-        }
-        
-    }
-
-    const handleClick = (cod) => {
-        navigate(`/Detail/${cod}`);
-      };
-
-    const [searchText, setSearchText] = useState("");      
-    const handleSearch = () => {
-        console.log("Texto de búsqueda:", searchText);
-    };
-
-    const handleSelectChange = (value) =>{
-        setSelectValue(value);
-    }
-
+    
     const Encabezados = [
         {
             "Id": 1,
@@ -101,8 +73,56 @@ const ComandaTable = () => {
             "Id": 6,
             "Header": "Sector",
             "HeaderBD": "Sector"
+        },
+        {
+            "Id": 7,
+            "Header": "Motivo",
+            "HeaderBD": "Motivo"
+        },
+        {
+            "Id": 8,
+            "Header": "T. Realizado",
+            "HeaderBD": "TR"
         }
     ]
+
+    const handleFilterClick = (estate) =>{
+
+        if (estate === 'TODO') {
+            setFilteredComandas(Comandas);
+        } else{
+            axios.get(`${urlEnv}/api/comandas`,{
+                params: {estado: estate}
+            })
+            .then(response => {
+                setFilteredComandas(response.data);
+            })
+            .catch(error => console.error('Error al obtener las comandas:', error));
+        }
+        
+    }
+
+    const handleClick = (cod) => {
+        navigate(`/Detail/${cod}`);
+      };
+
+    const handleSearch = () => {
+        axios.get(`${urlEnv}/api/comandas/find/dataxcolumn`,{
+            params:{
+                columnbd: SelectValue,
+                valuebd: searchText
+            }
+        })
+        .then(response => {
+            setFilteredComandas(response.data);
+        })
+        .catch(error => console.error('Error al obtener lista de pedidos filtrados', error));
+
+    };
+
+    const handleSelectChange = (value) =>{
+        setSelectValue(value);
+    }
 
 
     return (
@@ -112,7 +132,7 @@ const ComandaTable = () => {
                         Array={Encabezados}
                         onChange={handleSelectChange}
                         column='Header'
-                        defaultValue={Encabezados[0].Header}
+                        finder='HeaderBD'
                     />
                     <SearchBarInput
                         type="text"
