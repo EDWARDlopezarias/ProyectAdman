@@ -94,6 +94,11 @@ border:1px solid #07070775;
     text-align: center;
     width: 80px;
     border-radius: 10px;
+
+    @media (max-width: 600px) {        
+        width:60px;
+        font-size:11px;
+    }
 `;
 
 //Estilo de celda basado en Urgencia
@@ -104,6 +109,11 @@ const CeldaUrgencia = styled.div`
     text-align: center;
     width: 80px;
     border-radius: 10px;
+
+    @media (max-width: 600px) {        
+        width:60px;
+        font-size:11px;
+    }
 
 `;
 
@@ -141,7 +151,6 @@ const TableRowfilters = styled.div`
 `;
 
 const Tablefilter = styled.div`
-    padding: 10px;
     text-align: center;
     font-size: 16px;
     font-weight: 500;
@@ -151,9 +160,11 @@ const Tablefilter = styled.div`
 
     @media (max-width: 600px) {
         ${CeldaEstado} {
-            width:50px;
+            width:70px;
+            height:20px;
+            padding-top:1px;
         }
-        font-size: 11px;
+        font-size: 14px;
     }
 `;
 
@@ -161,11 +172,14 @@ const SearchBarContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   border: none;
   border-radius: 4px;
-  overflow: hidden;
   font-size:medium;
+
+  @media (max-width: 600px) {
+    margin:auto;
+  }
 `;
 
 // Campo de entrada para escribir el término de búsqueda
@@ -177,21 +191,27 @@ const SearchBarInput = styled.input`
   border: none;
   outline: none;
   font-size: 16px;
-  height:19px;
+  height:15px;
+  color:#fff;
+  font-weight:500;
+  font-style:italic;
+  
+  &::placeholder {
+    color:#ffffff44;
+  }
 `;
 
 // Botón de búsqueda
 const SearchBarButton = styled.button`
   background-color: #1e48645c;
   border: none;
-  padding: 10px;
-  display: flex;
   align-items: center;
-  justify-content: center;
   cursor: pointer;
   border-radius:0px 10px 10px 0px;
   transition: background-color 0.2s ease-out;
   box-shadow:inset 0px 0px 2px 2px #00000061;
+  height:35px;
+
 
   &:hover {
     background-color: #0056b3;
@@ -200,8 +220,42 @@ const SearchBarButton = styled.button`
 
 // Icono de flecha
 const ArrowIcon = styled.span`
-  font-size: 16px;
+  font-size: 20px;
+  padding:none;
+  margin:none;
   color: white;
+
+`;
+
+const PagesContainer = styled.div`
+    display:flex;
+    justify-Content:center;
+    margin-Top:20px;
+`;
+
+const PagesButton = styled.button`
+    background-color: #1e48645c;
+    border: none;
+    align-items: center;
+    cursor: pointer;
+    border-radius:10px;
+    transition: background-color 0.2s ease-out;
+    box-shadow:inset 0px 0px 2px 2px #00000061;
+    height:28px;
+    color:#ffffffd5;
+    padding:5px;
+    width:90px;
+
+    &:disabled {
+        background-color:#6c70745c;
+        color:#b4b1b1d3;
+    }
+`;
+
+const PagesNumber = styled.span`
+    margin:0 30px;
+    color:#fff;
+    font-weight:500;
 `;
 
 
@@ -222,5 +276,8 @@ export {
     SearchBarButton,
     SearchBarContainer,
     SearchBarInput,
-    ArrowIcon
+    ArrowIcon,
+    PagesContainer,
+    PagesButton,
+    PagesNumber
 };

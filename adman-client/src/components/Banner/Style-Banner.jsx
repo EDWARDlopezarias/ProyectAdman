@@ -13,28 +13,33 @@ const BannerWrapper = styled.header`
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     color: white;
-    padding: 10px 40px ;
+    padding-bottom:10px;
     z-index: 1000;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    transition: height 0.2s ease;
+
+    @media (max-width: 650px) {
+        height: ${props => props.$isHovered ? '20%' : 'auto'};
+    }
+
 `;
 
 const BannerContent = styled.div`
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items:center;
+    padding-left:10px;
     padding-top: 10px;
 
     @media (max-width: 650px) {
         flex-direction: column;
-        padding: 0;
+        padding: auto;
     }
 `;
 
 const StyledNav = styled.nav`
     display: flex;
-    align-items: center;
+    align-items:center;
 `;
 
 const Logo = styled(Link)`
@@ -57,7 +62,7 @@ const Logo = styled(Link)`
 const SubMenu = styled.div`
     display: ${props => props.$isActive ? 'flex' : 'none'};
     flex-direction: column;
-    position: absolute;
+    position:absolute;
     top: 100%;
     left: ${props => props.$left};
     font-weight: 400;
@@ -81,6 +86,7 @@ const SubMenu = styled.div`
         padding:8px;
         color:white;
         font-size:medium;
+        font-weight: 400;
         }
     }
 `;

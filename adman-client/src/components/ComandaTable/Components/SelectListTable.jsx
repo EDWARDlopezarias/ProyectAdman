@@ -5,11 +5,12 @@ import {
     Option
 } from "./Style-SelectListTable";
 
-const SelectList = ({Array, onChange, column, finder}) => {
+const SelectList = ({Array, onChange, column, finder, secondFinder}) => {
 
     const handleSelectChange = (e) =>{
         const ValueFind = Array.find(option => option[column] === e.target.value)[finder];
-        onChange(ValueFind);
+        const ValueType = Array.find(option => option[column] === e.target.value)[secondFinder];
+        onChange(ValueFind, ValueType);
     }
     
     return (

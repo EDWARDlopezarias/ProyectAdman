@@ -19,7 +19,10 @@ import {
     SearchBarButton,
     SearchBarContainer,
     SearchBarInput,
-    ArrowIcon
+    ArrowIcon,
+    PagesContainer,
+    PagesButton,
+    PagesNumber
 } from './style-ComandaTable.jsx'; // Supongamos que lo exportas de este archivo
 
 import SelectListTable from './Components/SelectListTable.jsx'
@@ -29,7 +32,10 @@ const ComandaTable = () => {
     const [Comandas, setComandas] = useState([]);
     const [filteredComandas, setFilteredComandas] = useState([]);    
     const [SelectValue, setSelectValue] = useState('COD');
-    const [searchText, setSearchText] = useState('');      
+    const [searchText, setSearchText] = useState('');
+    const [TypeValue, setTypeValue] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const recordsPerPage = 20;
     const urlEnv = process.env.REACT_APP_URL_HOME;
     const navigate = useNavigate();
     
@@ -47,44 +53,64 @@ const ComandaTable = () => {
         {
             "Id": 1,
             "Header": "Código",
-            "HeaderBD": "COD"
+            "HeaderBD": "COD",
+            "Type":"number"
         },
         {
             "Id": 2,
             "Header": "Estado",
-            "HeaderBD": "Estado"
+            "HeaderBD": "Estado",
+            "Type":"string"
         },
         {
             "Id": 3,
             "Header": "Máquina",
-            "HeaderBD": "MAQ"
+            "HeaderBD": "MAQ",
+            "Type":"string"
         },
         {
             "Id": 4,
             "Header": "Fecha",
-            "HeaderBD": "Fecha"
+            "HeaderBD": "Fecha",
+            "Type":"date"
         },
         {
             "Id": 5,
             "Header": "Criticidad",
-            "HeaderBD": "CRITICIDAD"
+            "HeaderBD": "Criticidad",
+            "Type":"string"
         },
         {
             "Id": 6,
             "Header": "Sector",
-            "HeaderBD": "Sector"
+            "HeaderBD": "Sector",
+            "Type":"string"
         },
         {
             "Id": 7,
             "Header": "Motivo",
-            "HeaderBD": "Motivo"
+            "HeaderBD": "Motivo",
+            "Type":"string"
         },
         {
             "Id": 8,
             "Header": "T. Realizado",
-            "HeaderBD": "TR"
+            "HeaderBD": "TR",
+            "Type":"string"
         }
     ]
+
+    // Calcular los registros para la página actual
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = filteredComandas.slice(indexOfFirstRecord, indexOfLastRecord);
+    const totalPages = Math.ceil(filteredComandas.length / recordsPerPage);
+
+    const handlePageChange = (newPage) => {
+        if (newPage > 0 && newPage <= totalPages) {
+            setCurrentPage(newPage);
+        }
+    };
 
     const handleFilterClick = (estate) =>{
 
@@ -110,18 +136,29 @@ const ComandaTable = () => {
         axios.get(`${urlEnv}/api/comandas/find/dataxcolumn`,{
             params:{
                 columnbd: SelectValue,
-                valuebd: searchText
+                valuebd: searchText,
+                typeValue: TypeValue
             }
         })
         .then(response => {
             setFilteredComandas(response.data);
         })
-        .catch(error => console.error('Error al obtener lista de pedidos filtrados', error));
+        .catch(error => {
+            error.data === undefined ? 
+            (
+                setFilteredComandas([])
+            ) :
+            (
+                console.error('Error al obtener lista de pedidos filtrados', error.data)
+            )
+            
+        })
 
     };
 
-    const handleSelectChange = (value) =>{
+    const handleSelectChange = (value, typeValue) =>{
         setSelectValue(value);
+        setTypeValue(typeValue);
     }
 
 
@@ -133,12 +170,15 @@ const ComandaTable = () => {
                         onChange={handleSelectChange}
                         column='Header'
                         finder='HeaderBD'
+                        secondFinder='Type'
                     />
                     <SearchBarInput
-                        type="text"
+                        type={TypeValue}
                         placeholder="Buscar..."
                         value={searchText}
-                        onChange={(e) => setSearchText(e.target.value.slice(0, 30))}
+                        onChange={(e) => {
+                            setSearchText(e.target.value.slice(0, 30));
+                        }}
                     />
                     <SearchBarButton onClick={handleSearch}>
                         <ArrowIcon>→</ArrowIcon>
@@ -175,7 +215,7 @@ const ComandaTable = () => {
                     </TableRowHeader>
                 </TableHeaders>
                 <tbody>
-                    {filteredComandas.map((comanda) => (
+                    {currentRecords.map((comanda) => (
                         <TableRowBody key={comanda.id}>
                             <TableData >
                                 <FinderContainer>
@@ -200,7 +240,17 @@ const ComandaTable = () => {
                         </TableRowBody>
                     ))}
                 </tbody>
-            </CustomTable>        
+            </CustomTable>
+            {/* Botones de paginación */}
+            <PagesContainer>
+                <PagesButton onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+                    Anterior
+                </PagesButton>
+                <PagesNumber >Página {currentPage} de {totalPages}</PagesNumber>
+                <PagesButton onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+                    Siguiente
+                </PagesButton>
+            </PagesContainer>        
         </TableContainer>
     );
 };

@@ -103,21 +103,43 @@ router.get('/count/dataxcolumn', async (req, res) => {
 
 // Ruta para obtener la lista de trabajos de comandas por columna y valor de columna
 router.get('/find/dataxcolumn', async (req, res) => {
-    const { columnbd, valuebd } = req.query;  // Obtener columna y valor desde los parámetros de la URL
+    const { columnbd, valuebd, typeValue } = req.query;  // Obtener columna y valor desde los parámetros de la URL
 
     try {
-        // Convertir el valor a un número si es posible, si no, quedará como NaN
-        const Numeric = !isNaN(valuebd) ? Number(valuebd) : null;
+        console.log(typeValue)
 
-        // Generar la condición `where` usando `LIKE` para texto o coincidencia exacta para números
-        const whereCondition = Numeric !== null
-            ? { [columnbd]: Numeric }  // Búsqueda exacta si es un número
-            : { [columnbd]: { [Op.like]: `%${valuebd}%` } };  // Búsqueda `LIKE` si es texto
+        if (typeValue === 'number') {
+            const whereCondition = { [columnbd]: valuebd }
 
-        const listByEstado = await Comanda.findAll({
-            where: whereCondition  // Usar la condición generada
-        });
-        res.json(listByEstado);
+            const listByEstado = await Comanda.findAll({
+                where: whereCondition, // Usar la condición generada
+                order: [['Fecha', 'DESC']]
+            });
+            res.json(listByEstado);
+        } else if (typeValue === 'string'){
+            const whereCondition = { [columnbd]: { [Op.iLike]: `%${valuebd}%` } };
+            
+            const listByEstado = await Comanda.findAll({
+                where: whereCondition, // Usar la condición generada
+                order: [['Fecha', 'DESC']]
+            });
+            res.json(listByEstado);
+        }else if (typeValue === 'date'){
+            const startDate = new Date(valuebd);
+            const endDate = new Date(valuebd);
+            endDate.setHours(44, 0, 0, 0);
+
+            const whereCondition = { [columnbd]: { [Op.between]: [startDate, endDate] } };
+            
+            const listByEstado = await Comanda.findAll({
+                where: whereCondition, // Usar la condición generada
+                order: [['Fecha', 'DESC']]
+            });
+            res.json(listByEstado);
+        } else {
+            return res.status(400).json({ error: 'Tipo de valor no soportado' });
+        }
+        
     } catch (error) {
         res.status(500).json({ error: `Error al encontrar los pedidos con la columna ${columnbd} y valor ${valuebd}` });
     }
