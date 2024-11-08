@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 //const { Op } = require('sequelize'); // Importar operadores de Sequelize
-//const sequelize = require('./db.js'); // Importar la instancia de Sequelize configuradaconst { Supervisor, Maquina, Tipo} = require('./models/models.js'); // Modelos Sequelize
+const sequelize = require('./db.js'); // Importar la instancia de Sequelize configuradaconst { Supervisor, Maquina, Tipo} = require('./models/models.js'); // Modelos Sequelize
 const { Supervisor, Maquina, Tipo, Tecnicos} = require('./models/models.js'); // Modelos Sequelize
 const comandasRouter = require('./Routes/comandas.js');
 const bdManagerRouter = require('./Routes/bdManager.js');
@@ -75,7 +75,13 @@ app.get('/api/max-cod', async (req, res) => {
 
 app.use('/api/comandas', comandasRouter);
 
-// Iniciar el servidor
-app.listen(port, () => {
-    console.log(`Server is running on http://${ip}:${port}`);
-});
+// Sincronizar la base de datos y luego iniciar el servidor
+sequelize.sync()
+    .then(() => {
+        app.listen(port, () => {
+            console.log(`Server is running on http://${ip}:${port}`);
+        });
+    })
+    .catch(error => {
+        console.error('Unable to connect to the database:', error);
+    });
