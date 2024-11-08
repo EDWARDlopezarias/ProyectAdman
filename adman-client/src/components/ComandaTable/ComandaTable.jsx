@@ -179,6 +179,11 @@ const ComandaTable = () => {
                         onChange={(e) => {
                             setSearchText(e.target.value.slice(0, 30));
                         }}
+                        onKeyDown={(e) => {
+                            if (e.key ==='Enter') {
+                                handleSearch();
+                            }
+                        }}
                     />
                     <SearchBarButton onClick={handleSearch}>
                         <ArrowIcon>→</ArrowIcon>
