@@ -23,6 +23,7 @@ const NewComandaForm = () => {
 
     const [supervisores, setSupervisores] = useState([]);
     const [maquinas, setMaquinas] = useState([]);
+    const [tecnicos, setTecnicos] = useState([]);
     const [tipos, setTipos] = useState([]);
     const urlEnv = process.env.REACT_APP_URL_HOME
 
@@ -49,6 +50,11 @@ const NewComandaForm = () => {
             .then(response => setTipos(response.data))
             .catch(error => console.error('Error al obtener tipos de mantenimiento:', error));
         
+        // Obtener datos de los tecnicos
+        axios.get(`${urlEnv}/api/Tech`)
+            .then(response => setTecnicos(response.data))
+            .catch(error => console.error('Error al obtener Array de técnicos:', error));
+        
         // Obtener el mayor valor de COD
         maxComanda();
     }, [maxComanda]);//observa la variable
@@ -57,6 +63,8 @@ const NewComandaForm = () => {
         e.preventDefault();
         const formattedDate = new Date().toISOString();
         const urlEnv = process.env.REACT_APP_URL_HOME
+        const maquina = maquinas.find((cod)=> cod.CODMAQUINA === codigoMaquina);
+        const tecnico = tecnicos.find((sec)=> sec.Sector_1 === maquina.Sector);
         try {
             const newComanda = {
                 Supervisor: supervisor,
@@ -66,9 +74,13 @@ const NewComandaForm = () => {
                 Tipo_de_mantenimiento: tipo,
                 Criticidad: criticidad,
                 Fecha: formattedDate,
-                Estado: 'EMITIDO'
+                Estado: 'EMITIDO',
+                Hinicio:formattedDate,
+                Fecha_aprobacion:formattedDate,
+                Sector: maquina.Sector,
+                Tech1:tecnico.Tecnico,
+                TR:'Trabajo sin realizar.'
             };
-            console.log(newComanda);
             await axios.post(`${urlEnv}/api/comandas`, newComanda);
             alert('Comanda creada exitosamente');
             // Reiniciar los campos del formulario

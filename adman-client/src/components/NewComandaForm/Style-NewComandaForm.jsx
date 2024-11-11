@@ -74,6 +74,11 @@ const TextArea = styled.textarea`
     padding: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: small;
+    border:none;
+
+    &:focus {
+        outline:none;
+    }
 `;
 const ButtonForm = styled.button`
     align-self: flex-end;
