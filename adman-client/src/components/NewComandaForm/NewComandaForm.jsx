@@ -83,6 +83,7 @@ const NewComandaForm = () => {
             };
             await axios.post(`${urlEnv}/api/comandas`, newComanda);
             alert('Comanda creada exitosamente');
+            
             // Reiniciar los campos del formulario
             setSupervisor('');
             setCodigoComanda('');

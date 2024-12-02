@@ -4,8 +4,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NewComandaForm from './components/NewComandaForm/NewComandaForm';
 import Banner from './components/Banner/Banner'; // Importa el componente Banner
+import Footer from './components/Footer/Footer';
 import Admin from './components/Routes/Admin/Admin';
-import Supervisor from './components/Routes/Supervisor/Supervisor';
+//import Supervisor from './components/Routes/Supervisor/Supervisor';
 import Users from './components/Routes/Usuario/Usuario';
 import Dashboard from './components/Routes/Dashboard/Dashboard';
 import ListaPedidos from './components/Routes/ListaPedidos/ListaPedidos';
@@ -17,6 +18,7 @@ import GridUSers from './components/Grid/GridUsers/GridUsers';
 import TableTech from './components/Table/TableTech/TableTech'
 import UserPage from './components/Routes/Admin/UserPage/UserPage'
 import TableSuperv from './components/Table/TableSuperv/TableSuperv'
+import FormGral from './components/Forms/FormGral/FormGral'
 
 function App() {
     return (
@@ -30,7 +32,7 @@ function App() {
                         <Route path="/new-comanda" element={<NewComandaForm />} />
                         <Route path="/Users/Pending" element={<GridUSers />} />
                         <Route path="/Users" element={<Admin />} />
-                        <Route path="/Supervisor" element={<Supervisor />} />
+                        <Route path="/Supervisor" element={<FormGral />} />
                         <Route path="/Users" element={<Users />} />
                         <Route path="/BdManager" element={<LoadWindow />} />
                         <Route path="/Detail/:cod" element={<PedidoDetail />} />
@@ -40,6 +42,7 @@ function App() {
                         <Route path='/Admin/UserPage' element={<UserPage />} />
                     </Routes>
                 </div>
+                <Footer />
             </div>
         </Router>
     );

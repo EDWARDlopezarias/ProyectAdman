@@ -30,7 +30,7 @@ function Banner() {
             setIsHovered(false)
         }}>
             <BannerContent>
-                <Logo to="/Dashboard">KATH.ia</Logo>
+                <Logo to="/Dashboard">ADman</Logo>
                 <StyledNav>
                     <MenuItem
                         onMouseEnter={() => {

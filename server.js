@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 //const { Op } = require('sequelize'); // Importar operadores de Sequelize
 const sequelize = require('./db.js'); // Importar la instancia de Sequelize configuradaconst { Supervisor, Maquina, Tipo} = require('./models/models.js'); // Modelos Sequelize
-const { Supervisor, Maquina, Tipo, Tecnicos} = require('./models/models.js'); // Modelos Sequelize
+const { Supervisor, Maquina, Tipo, Tecnicos, Part, Task} = require('./models/models.js'); // Modelos Sequelize
 const comandasRouter = require('./Routes/comandas.js');
 const bdManagerRouter = require('./Routes/bdManager.js');
 const Comanda = require('./models/BdComanda.js');
@@ -21,6 +21,48 @@ app.use('/api', bdManagerRouter);
 // Rutas
 app.get('/', (req, res) => {
     res.send('Welcome to ADMAN API!');
+});
+
+//Ruta para obtener máquinas
+app.get('/api/Part', async (req, res) => {
+    try {
+        const parts = await Part.findAll(); // Obtener todas las máquinas
+        res.json(parts);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener lista de partes' });
+    }
+});
+
+// POST /Parts
+app.post('/api/Part', async (req, res) => {
+    try {
+        const newPart = await Part.create(req.body);
+        res.status(201).json(newPart);
+    } catch (error) {
+        console.error('Error creating new part:', error);
+        res.status(500).send('Server Error');
+    }
+});
+
+//Ruta para obtener máquinas
+app.get('/api/Task', async (req, res) => {
+    try {
+        const tasks = await Task.findAll(); // Obtener todas las máquinas
+        res.json(tasks);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener lista de tareas' });
+    }
+});
+
+// POST /api/Tasks
+app.post('/api/Tasks', async (req, res) => {
+    try {
+        const newTask = await Task.create(req.body);
+        res.status(201).json(newTask);
+    } catch (error) {
+        console.error('Error creating new task:', error);
+        res.status(500).send('Server Error');
+    }
 });
 
 // Ruta para obtener supervisores

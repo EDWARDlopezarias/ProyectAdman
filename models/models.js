@@ -59,4 +59,40 @@ const Tecnicos = sequelize.define('Tecnico', {
     timestamps: false
 })
 
-module.exports = {Supervisor, Maquina, Tipo, Tecnicos};
+// Modelo partes de máquina en Mantenimiento
+const Part = sequelize.define('Part', {
+    Id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    CODMAQUINA: DataTypes.STRING,
+    COD_PART: DataTypes.STRING
+}, {
+    tableName: 'BD_PARTS',
+    timestamps: false
+});
+
+// Modelo Tareas de Mantenimiento
+const Task = sequelize.define('Task', {
+    Id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    MAQ_PART: DataTypes.STRING,
+    COD_TASK: DataTypes.STRING,
+    DESC: DataTypes.STRING
+}, {
+    tableName: 'BD_TASK',
+    timestamps: false
+});
+
+module.exports = {
+    Supervisor,
+    Maquina,
+    Tipo,
+    Tecnicos,
+    Part,
+    Task
+};
