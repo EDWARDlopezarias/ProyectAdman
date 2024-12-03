@@ -18,7 +18,7 @@ import GridUSers from './components/Grid/GridUsers/GridUsers';
 import TableTech from './components/Table/TableTech/TableTech'
 import UserPage from './components/Routes/Admin/UserPage/UserPage'
 import TableSuperv from './components/Table/TableSuperv/TableSuperv'
-import FormGral from './components/Forms/FormGral/FormGral'
+import FormParts from './components/Forms/FormParts/FormParts'
 
 function App() {
     return (
@@ -32,7 +32,7 @@ function App() {
                         <Route path="/new-comanda" element={<NewComandaForm />} />
                         <Route path="/Users/Pending" element={<GridUSers />} />
                         <Route path="/Users" element={<Admin />} />
-                        <Route path="/Supervisor" element={<FormGral />} />
+                        <Route path="/Supervisor" element={<FormParts />} />
                         <Route path="/Users" element={<Users />} />
                         <Route path="/BdManager" element={<LoadWindow />} />
                         <Route path="/Detail/:cod" element={<PedidoDetail />} />

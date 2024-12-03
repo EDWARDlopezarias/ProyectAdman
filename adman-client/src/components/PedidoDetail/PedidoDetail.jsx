@@ -45,6 +45,7 @@ const ComandaDetails = () => {
           setTr('Sin trabajo Realizado')
         }
         setTecnico(response.data.Tech1)
+        setSelectValue(response.data.Tech1)
       } catch (err) {
         setError('Error al obtener la información de la comanda.');
       }
@@ -86,6 +87,8 @@ const ComandaDetails = () => {
         })
         .catch(error => console.error('Error updating comanda:', error));
         setUpdate(!update)
+        alert('Pedido iniciado');
+        window.location.reload();
       break;
 
       case 'EN CURSO':
@@ -100,6 +103,8 @@ const ComandaDetails = () => {
             alert('Trabajo Actualizado');
         })
         .catch(error => console.error('Error updating comanda:', error));
+        alert('Trabajo Actualizado');
+        window.location.reload();
       break;
 
       default:

@@ -1,9 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const InputForm = styled.input`
+const FormSelectContainer = styled.div`
+`;
+
+const Select = styled.select`
+
     font-size: 15px;
-	padding: 5px 10px;
-	width:50%;
+	padding: 5px 10px; 
+	width: auto;
 	outline: none;
 	background: #A7A7A7;
 	color: #000000;
@@ -20,13 +24,16 @@ const InputForm = styled.input`
     &::placeholder {
         color: #8F9CB2;
     }
+
+    @media (max-width:850px) {
+    }
 `;
 
-const InputContainer = styled.div`
-    display: flex;
-	align-items: center;
-	position: relative;
-	max-width: 100%;
+const Option = styled.option`
 `;
 
-export{InputForm, InputContainer};
+export {
+    FormSelectContainer,
+    Select,
+    Option
+};
