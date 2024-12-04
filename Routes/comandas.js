@@ -79,6 +79,7 @@ router.get('/countxfechas', async (req, res) => {
             }
         });
         res.json({ countByFechasAndFilters });
+        console.log({countByFechasAndFilters})
     } catch (error) {
         res.status(500).json({ error: 'Error al contar los registros entre las fechas especificadas y filtros' });
     }

@@ -1,11 +1,15 @@
 import React from 'react';
 import {InputForm, InputContainer} from './Style-FormInput';
 
-const FormInput = () => {
+const FormInput = ({onChange}) => {
 
+    const handleInputChange = (e) =>{
+        onChange(e.target.value)
+    }
+    
     return(
         <InputContainer>
-            <InputForm />
+            <InputForm onChange={handleInputChange}/>
         </InputContainer>
     )
 };

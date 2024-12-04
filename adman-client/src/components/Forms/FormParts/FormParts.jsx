@@ -13,7 +13,8 @@ import FormSelect from'../Components/FormSelect/FormSelect';
 
 const FormParts = () => {
     const [maquinas, setMaquinas] = useState([]);
-    const [, setSelectValue] = useState('');
+    const [selectValue, setSelectValue] = useState('');
+    const [inputValue, setInputValue] = useState('');
 
     useEffect(()=>{
         const urlEnv = process.env.REACT_APP_URL_HOME
@@ -26,7 +27,37 @@ const FormParts = () => {
 
     const handleSelectChange = (value) =>{
         setSelectValue(value)
-      }
+    }
+
+    const handleClickButton = async () => {
+        const urlEnv = process.env.REACT_APP_URL_HOME
+
+        try {
+            const newPart = {
+                CODMAQUINA: selectValue,
+                COD_PART:inputValue
+            };
+            await axios.post(`${urlEnv}/api/Part`, newPart);
+            alert('Parte creada exitosamente')
+
+            setInputValue('');
+            setSelectValue('')
+
+        } catch (error) {
+            console.error('Error creando parte', error);
+            console.log(error)
+            alert('Error al crear parte');
+        }
+
+        alert(`Parte: ${inputValue} de máquina ${selectValue}`)
+
+    };
+
+    const handleInputChange = (value) => {
+        setInputValue(value)
+    }
+
+    
 
     return (
         <FormContainer>
@@ -40,9 +71,9 @@ const FormParts = () => {
                     defaultValue={'Elija Máquina'}
                 />
                 <FormSubTittle>Parte de máquina</FormSubTittle>
-                <FormInput />
+                <FormInput onChange={handleInputChange} />
                 <FormSection>
-                    <FormButton>Cargar información</FormButton>
+                    <FormButton type='button' onClick={handleClickButton}>Cargar información</FormButton>
                 </FormSection>
             </FormMain>
         </FormContainer>

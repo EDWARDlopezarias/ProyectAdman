@@ -36,6 +36,7 @@ app.get('/api/Part', async (req, res) => {
 // POST /Parts
 app.post('/api/Part', async (req, res) => {
     try {
+        console.log(req.body);
         const newPart = await Part.create(req.body);
         res.status(201).json(newPart);
     } catch (error) {

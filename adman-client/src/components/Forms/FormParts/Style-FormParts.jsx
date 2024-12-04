@@ -46,7 +46,7 @@ const FormButton = styled.button`
     font-size: 15px;
 	padding: 5px 10px;
     margin-top:15px;
-    margin-bottom:5px; 
+    margin-bottom:5px;
 	width: auto;
 	outline: none;
 	background: #A7A7A7;
@@ -55,7 +55,7 @@ const FormButton = styled.button`
 	border-radius: 11px;
 	transition: .3s ease;
     align-content:center;
-    box-shadow:0px 1px 4px 1px;
+    box-shadow:0px 0px 0px 0px;
     
     &:focus {
         background: #F2F2F2;
@@ -68,7 +68,7 @@ const FormButton = styled.button`
     }
     
     &:hover {
-        box-shadow:0px 1px 10px 1px;
+        box-shadow:0px 0px 4px 0px;
     }
 `;
 
