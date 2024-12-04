@@ -19,6 +19,7 @@ import TableTech from './components/Table/TableTech/TableTech'
 import UserPage from './components/Routes/Admin/UserPage/UserPage'
 import TableSuperv from './components/Table/TableSuperv/TableSuperv'
 import FormParts from './components/Forms/FormParts/FormParts'
+import TableParts from './components/Table/TableMachines/Components/TableParts'
 
 function App() {
     return (
@@ -36,9 +37,11 @@ function App() {
                         <Route path="/Users" element={<Users />} />
                         <Route path="/BdManager" element={<LoadWindow />} />
                         <Route path="/Detail/:cod" element={<PedidoDetail />} />
+                        <Route path="/Detail/Machine/:cod" element={<TableParts />} />
                         <Route path="/Machines" element={<TableMachines />} />
                         <Route path='/Users/Table/Tech' element={<TableTech />}/>
                         <Route path='/Users/Table/Superv' element={<TableSuperv />}/>
+                        <Route path="/Machine/Table" element={<FormParts />} />
                         <Route path='/Admin/UserPage' element={<UserPage />} />
                     </Routes>
                 </div>

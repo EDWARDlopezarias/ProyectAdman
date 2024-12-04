@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { 
     TMContainer,
@@ -12,11 +13,13 @@ import {
     TMBodyRow,
     TMBodyData
  } from './Style-TableMachines.jsx';
+import { FinderContainer, FindWork } from '../../ComandaTable/style-ComandaTable.jsx';
 
 
 const TableMachines = () => {
     const [Maquinas, setMaquinas] = useState([]);
     const urlEnv = process.env.REACT_APP_URL_HOME;
+    const navigate = useNavigate();
 
     useEffect(()=>{
         axios.get(`${urlEnv}/api/maquinas`)
@@ -25,6 +28,10 @@ const TableMachines = () => {
             })
             .catch(error => console.error('Error al obtener lista de maáquinas:', error))
     },[urlEnv]);
+
+    const handleClick = (cod) => {
+        navigate(`/Detail/Machine/${cod}`);
+      };
 
     return (
         <TMContainer>
@@ -41,7 +48,17 @@ const TableMachines = () => {
                 <TMBody>
                     {Maquinas.map((maq)=>(
                         <TMBodyRow key={maq.Id}>
-                            <TMBodyData>{maq.Id}</TMBodyData>
+                            <TMBodyData>
+                                <FinderContainer>
+                                    <FindWork onClick={() => handleClick(maq.CODMAQUINA)}>
+                                        <svg viewBox="0 0 24 24">
+                                            <path d="M10,2A8,8,0,1,0,18,10,8,8,0,0,0,10,2Zm0,14A6,6,0,1,1,16,10,6,6,0,0,1,10,16Z"></path>
+                                            <path d="M21.71,20.29,18,16.59a9.91,9.91,0,0,1-1.41,1.41l3.71,3.71a1,1,0,0,0,1.41-1.41Z"></path>
+                                        </svg>
+                                    </FindWork>
+                                    {maq.Id}
+                                </FinderContainer>
+                            </TMBodyData>
                             <TMBodyData>{maq.CODMAQUINA}</TMBodyData>
                             <TMBodyData>{maq.MAQUINA}</TMBodyData>
                             <TMBodyData>{maq.Sector}</TMBodyData>

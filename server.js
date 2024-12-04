@@ -23,13 +23,27 @@ app.get('/', (req, res) => {
     res.send('Welcome to ADMAN API!');
 });
 
-//Ruta para obtener máquinas
+//Ruta para obtener partes
 app.get('/api/Part', async (req, res) => {
     try {
-        const parts = await Part.findAll(); // Obtener todas las máquinas
+        const parts = await Part.findAll(); // Obtener todas las partes
         res.json(parts);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener lista de partes' });
+    }
+});
+
+//Ruta para obtener partes
+app.get('/api/Part/:cod', async (req, res) => {
+    try {
+        const part = await Part.findAll({ where: { CODMAQUINA: req.params.cod } });
+        if (part) {
+            res.json(part);
+        } else {
+            res.status(404).send('Machine not found');
+        }
+    } catch (err) {
+        res.status(500).send(err.message);
     }
 });
 
@@ -45,10 +59,10 @@ app.post('/api/Part', async (req, res) => {
     }
 });
 
-//Ruta para obtener máquinas
+//Ruta para obtener tareas
 app.get('/api/Task', async (req, res) => {
     try {
-        const tasks = await Task.findAll(); // Obtener todas las máquinas
+        const tasks = await Task.findAll(); // Obtener todas las tareas
         res.json(tasks);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener lista de tareas' });

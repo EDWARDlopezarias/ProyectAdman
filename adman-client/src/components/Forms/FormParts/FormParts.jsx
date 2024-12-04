@@ -10,11 +10,13 @@ import {
 } from './Style-FormParts';
 import FormInput from '../Components/FormInput/FormInput';
 import FormSelect from'../Components/FormSelect/FormSelect';
+import { useNavigate } from 'react-router-dom';
 
 const FormParts = () => {
     const [maquinas, setMaquinas] = useState([]);
     const [selectValue, setSelectValue] = useState('');
     const [inputValue, setInputValue] = useState('');
+    const navigate = useNavigate();
 
     useEffect(()=>{
         const urlEnv = process.env.REACT_APP_URL_HOME
@@ -42,6 +44,7 @@ const FormParts = () => {
 
             setInputValue('');
             setSelectValue('')
+            navigate('/Machines');
 
         } catch (error) {
             console.error('Error creando parte', error);
