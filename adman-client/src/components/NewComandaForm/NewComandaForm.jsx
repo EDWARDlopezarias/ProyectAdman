@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import SelectForm from '../SelectForm/SelectForm';
+import SelectForm from './Components/SelectForm/SelectForm.jsx';
 import {
     FormContainer,
     Form,

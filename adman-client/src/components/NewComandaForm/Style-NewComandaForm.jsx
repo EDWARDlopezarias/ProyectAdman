@@ -21,17 +21,20 @@ const Form = styled.form`
     @media (max-width: 600px) {
     .form {
         border-radius: 0px;
-    }    
+    }
 }
 `;
 
 const CodPedido = styled.h2`
     margin-bottom: 20px;
-    background-color: rgb(97, 97, 97);
+    background-color: rgba(97, 97, 97, 0.247);
     border-radius: 30px;
     padding-top: 5px;
     text-align: center;
     box-shadow: inset 2px 2px 3px black;
+    color:#fff;
+    letter-spacing:1px;
+    font-size:large;
 
     @media (max-width: 600px) {
     
@@ -45,10 +48,7 @@ const CodPedido = styled.h2`
 `;
 
 const SelectContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    padding-left: 50px;
-    gap: 20px;
+    
 `;
 
 const Section = styled.div`
@@ -81,17 +81,32 @@ const TextArea = styled.textarea`
     }
 `;
 const ButtonForm = styled.button`
-    align-self: flex-end;
-    padding: 10px 20px;
-    background-color: #bcdafa;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-    border-radius: 20px;
-
+    font-size: 15px;
+	padding: 5px 10px;
+    margin-top:15px;
+    margin-bottom:5px;
+    width:150px;
+	outline: none;
+	background: #A7A7A7;
+	color: #000000;
+	border: 0px solid #C4D1EB;
+	border-radius: 11px;
+	transition: .3s ease;
+    align-self:flex-end;
+    box-shadow:0px 0px 0px 0px;
+    
+    &:focus {
+        background: #F2F2F2;
+        border: 0px solid #5A7EC7;
+        border-radius: 11px;
+    }
+    
+    &::placeholder {
+        color: #8F9CB2;
+    }
+    
     &:hover {
-        background-color: rgb(117, 203, 230);
+        box-shadow:0px 0px 4px 0px;
     }
 `;
 
