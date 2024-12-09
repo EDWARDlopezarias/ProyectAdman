@@ -48,6 +48,42 @@ const TMBodyData = styled.td`
 
 `;
 
+const PagesContainer = styled.div`
+    display:flex;
+    justify-Content:right;
+    margin:5px 0px;
+
+    @media (max-width: 600px) {
+        justify-Content:center;
+        margin:15px 0px;
+    }
+`;
+
+const PagesButton = styled.button`
+    background-color: #1e48645c;
+    border: none;
+    align-items: center;
+    cursor: pointer;
+    border-radius:10px;
+    transition: background-color 0.2s ease-out;
+    box-shadow:inset 0px 0px 2px 2px #00000061;
+    height:28px;
+    color:#ffffffd5;
+    padding:5px;
+    width:90px;
+
+    &:disabled {
+        background-color:#6c70745c;
+        color:#b4b1b1d3;
+    }
+`;
+
+const PagesNumber = styled.span`
+    margin:0 30px;
+    color:#fff;
+    font-weight:500;
+`;
+
 export {
     TMContainer,
     TMTable,
@@ -58,5 +94,8 @@ export {
     TMHeadData,
     TMBody,
     TMBodyRow,
-    TMBodyData
+    TMBodyData,
+    PagesContainer,
+    PagesButton,
+    PagesNumber
 };

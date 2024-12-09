@@ -20,9 +20,11 @@ import {
     SearchBarContainer,
     SearchBarInput,
     ArrowIcon,
+    InfoContainer,
     PagesContainer,
     PagesButton,
-    PagesNumber
+    PagesNumber,
+    InfoText
 } from './style-ComandaTable.jsx'; // Supongamos que lo exportas de este archivo
 
 import SelectListTable from './Components/SelectListTable.jsx'
@@ -116,12 +118,14 @@ const ComandaTable = () => {
 
         if (estate === 'TODO') {
             setFilteredComandas(Comandas);
+            setCurrentPage(1)
         } else{
             axios.get(`${urlEnv}/api/comandas`,{
                 params: {estado: estate}
             })
             .then(response => {
                 setFilteredComandas(response.data);
+                setCurrentPage(1)
             })
             .catch(error => console.error('Error al obtener las comandas:', error));
         }
@@ -164,6 +168,7 @@ const ComandaTable = () => {
 
     return (
         <TableContainer>
+                {/* Buscador */}
                 <SearchBarContainer>
                     <SelectListTable 
                         Array={Encabezados}
@@ -189,6 +194,7 @@ const ComandaTable = () => {
                         <ArrowIcon>→</ArrowIcon>
                     </SearchBarButton>
                 </SearchBarContainer>
+                {/* Botones de filtros */}
                 <TableRowfilters>
                     <Tablefilter>
                     </Tablefilter>
@@ -208,6 +214,19 @@ const ComandaTable = () => {
                         <CeldaEstado onClick={() => handleFilterClick('EN CURSO')} $estado='EN CURSO'>En curso</CeldaEstado>
                     </Tablefilter>
                 </TableRowfilters>
+                <InfoContainer>
+                    <InfoText>Registros Totales: {filteredComandas.length}</InfoText>
+                    {/* Botones de paginación */}
+                    <PagesContainer>
+                        <PagesButton onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+                            Anterior
+                        </PagesButton>
+                        <PagesNumber >Página {currentPage} de {totalPages}</PagesNumber>
+                        <PagesButton onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+                            Siguiente
+                        </PagesButton>
+                    </PagesContainer>
+                </InfoContainer>
             <CustomTable>
                 <TableHeaders>
                     <TableRowHeader>
@@ -246,16 +265,6 @@ const ComandaTable = () => {
                     ))}
                 </tbody>
             </CustomTable>
-            {/* Botones de paginación */}
-            <PagesContainer>
-                <PagesButton onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-                    Anterior
-                </PagesButton>
-                <PagesNumber >Página {currentPage} de {totalPages}</PagesNumber>
-                <PagesButton onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-                    Siguiente
-                </PagesButton>
-            </PagesContainer>        
         </TableContainer>
     );
 };

@@ -227,16 +227,43 @@ const ArrowIcon = styled.span`
 
 `;
 
-const PagesContainer = styled.div`
+const InfoContainer = styled.div`
+    font-size:15px;
     display:flex;
-    justify-Content:center;
-    margin-Top:20px;
+    justify-content:space-between;
+    margin:5px 0px;
+
+    @media (max-width: 600px) {
+        justify-Content:center;
+        margin:15px 0px;
+    }
+`;
+
+const PagesContainer = styled.div`
+    margin:5px 0px;
+
+    @media (max-width: 600px) {
+        margin:15px 0px;
+    }
+`;
+
+const InfoText = styled.div`
+    font-weight:500;
+    margin:5px 0px;
+    background-color: #1e48645c;
+    border: none;
+    align-items: center;
+    border-radius:10px;
+    transition: background-color 0.2s ease-out;
+    box-shadow:inset 0px 0px 2px 2px #00000061;
+    color:#ffffffd5;
+    padding:5px;
+    height:20px;
 `;
 
 const PagesButton = styled.button`
     background-color: #1e48645c;
     border: none;
-    align-items: center;
     cursor: pointer;
     border-radius:10px;
     transition: background-color 0.2s ease-out;
@@ -277,7 +304,9 @@ export {
     SearchBarContainer,
     SearchBarInput,
     ArrowIcon,
+    InfoContainer,
     PagesContainer,
     PagesButton,
-    PagesNumber
+    PagesNumber,
+    InfoText
 };

@@ -126,6 +126,14 @@ const NewComandaForm = () => {
                         column='CODMAQUINA'
                     />                        
                     <SelectForm
+                        title='Parte de máquina:'
+                        firstvalue='Seleccionar'
+                        value={criticidad}
+                        fn={(e) => setCriticidad(e.target.value)}
+                        bd={Urgencias}
+                        column='TIPO'
+                    />
+                    <SelectForm
                         title='Tipo de Comanda:'
                         firstvalue='Seleccionar'
                         value={tipo}
