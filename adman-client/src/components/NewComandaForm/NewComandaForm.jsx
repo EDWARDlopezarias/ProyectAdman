@@ -17,6 +17,8 @@ const NewComandaForm = () => {
     const [supervisor, setSupervisor] = useState('');
     const [codigoComanda, setCodigoComanda] = useState('');
     const [codigoMaquina, setCodigoMaquina] = useState('');
+    const [partesMaquina, setPartesMaquina] = useState([]);
+    const [parteMaquina, setParteMaquina] = useState([])
     const [motivo, setMotivo] = useState('');
     const [tipo, setTipo] = useState('');
     const [criticidad, setCriticidad] = useState('');
@@ -55,9 +57,14 @@ const NewComandaForm = () => {
             .then(response => setTecnicos(response.data))
             .catch(error => console.error('Error al obtener Array de técnicos:', error));
         
+        axios.get(`${urlEnv}/api/Part/${codigoMaquina}`)
+            .then(response => setPartesMaquina(response.data))
+            .catch(error => console.error('Error al obtener Array de partes de máquina:', error));
+
         // Obtener el mayor valor de COD
         maxComanda();
-    }, [maxComanda]);//observa la variable
+    }, [maxComanda, codigoMaquina]);//observa la variable
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -128,10 +135,10 @@ const NewComandaForm = () => {
                     <SelectForm
                         title='Parte de máquina:'
                         firstvalue='Seleccionar'
-                        value={criticidad}
-                        fn={(e) => setCriticidad(e.target.value)}
-                        bd={Urgencias}
-                        column='TIPO'
+                        value={parteMaquina}
+                        fn={(e) => setParteMaquina(e.target.value)}
+                        bd={partesMaquina}
+                        column='COD_PART'
                     />
                     <SelectForm
                         title='Tipo de Comanda:'

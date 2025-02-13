@@ -122,7 +122,8 @@ const InputText = styled.textarea`
     font-size:medium;
     border: 0px solid rgba(100, 100, 100, 1);
     border-radius: 5px;
-    background-color: rgba(66, 60, 60, 0.192);
+    background-color: rgba(194, 194, 194, 0.192);
+    //background-color: rgba(66, 60, 60, 0.192);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding:15px;

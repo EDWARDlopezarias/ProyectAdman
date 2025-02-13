@@ -119,6 +119,7 @@ const ComandaDetails = () => {
     const msDiferencia = new Date(horaFin) - new Date(horaInicio); // Diferencia en milisegundos
     const horas = Math.floor(msDiferencia / (1000 * 60 * 60)); // Convertir a horas
     const minutos = Math.floor((msDiferencia % (1000 * 60 * 60)) / (1000 * 60)); // Minutos restantes
+    console.log(comanda.SH1);
     return `${horas} horas y ${minutos} minutos`;
   }
 
@@ -213,16 +214,20 @@ const ComandaDetails = () => {
       </Table>
             <SubTitleText>Motivo de pedido</SubTitleText>
                 <Texto>{comanda.Motivo}</Texto>
-            <SubTitleText>Detalle de trabajo realizado</SubTitleText>
                 {comanda.Estado === 'EN CURSO' ? (
-                <InputText
+                  <SubTitleText>Completar trabajo realizado</SubTitleText>
+                    ) : (
+                      <SubTitleText>Detalle de trabajo realizado o a realizar</SubTitleText>
+                  )}
+                {comanda.Estado === 'EN CURSO' ? (
+                  <InputText
                     type="text" 
                     value={Tr} 
                     onChange={(e) => setTr(e.target.value)} 
                 />
                     ) : (
                         <Texto>{comanda.TR}</Texto>
-                    )}
+                  )}
             <ButtonFormContainer>
               <ButtonForm onClick={()=> HandleBackClick()} >Volver</ButtonForm>
               <ButtonForm onClick={()=> HandleSaveClick()} disabled={comanda.Estado === 'FINALIZADO' ? true : false}>{comanda.Estado === 'EMITIDO' ? 'Iniciar' : 'Finalizar'}</ButtonForm>

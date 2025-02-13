@@ -1,0 +1,34 @@
+Abrir CMD como administrador
+
+Arrancar backend
+ejecutar:
+
+>cd C://
+
+>cd server
+
+>pm2 start server.js
+
+Arrancar front-end
+
+>cd C://
+
+>cd build
+
+>npx serve -s . -l 3001
+
+se puede cerrar la ventana del backend pero no el del front.
+
+en caso de cerrar front hay que ejecutar nuevamente el código
+
+en caso de cerrar la ventana del backend, este se ejecutará en segundo plano, además si desea volver a abrir hay que volver a ejecutar los códigos pero:
+
+en vez de ejecutar
+
+">pm2 start server.js"
+
+hay que ejecutar:
+
+>pm2 list
+
+debería aparecer una tabla y en ella el servidor montado
